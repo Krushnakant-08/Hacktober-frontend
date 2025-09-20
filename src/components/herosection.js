@@ -133,6 +133,18 @@ export default function HeroSection() {
 
       {/* Gradient overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0D0C1D] via-transparent to-transparent pointer-events-none" />
+      
+      {/* CESA Logo at Bottom */}
+      <div className="absolute bottom-1 w-full flex justify-center z-20 mt">
+        <img 
+          src="/assests/CESA_WHITE.png" 
+          alt="CESA Logo" 
+          className="max-w-[600px] md:max-w-md lg:max-w-[280px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110 mt-50"
+          style={{
+            filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))"
+          }}
+        />
+      </div>
     </div>
   );
 }
