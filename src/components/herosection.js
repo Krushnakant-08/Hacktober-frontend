@@ -7,7 +7,20 @@ export default function HeroSection() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d", { alpha: false }); // Disable alpha for better performance
     
-    // Set initial canvas size with debounced resize handler for better performance
+    // First, set initial canvas dimensions
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // Create particles - fewer particles on mobile for better performance
+    const particleCount = window.innerWidth < 768 ? 30 : 60;
+    let particles = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2 + 1,
+      speedY: Math.random() * 0.5 + 0.2,
+    }));
+    
+    // Now define resizeCanvas after particles is defined
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -18,17 +31,6 @@ export default function HeroSection() {
         p.y = Math.random() * canvas.height;
       });
     };
-    
-    resizeCanvas();
-    
-    // Create particles - fewer particles on mobile for better performance
-    const particleCount = window.innerWidth < 768 ? 30 : 60;
-    let particles = Array.from({ length: particleCount }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 1,
-      speedY: Math.random() * 0.5 + 0.2,
-    }));
 
     let animationFrameId;
     
@@ -132,7 +134,7 @@ export default function HeroSection() {
             Presented by PCCoE ACM. Your journey into open source begins now.
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-6">
-            <div className="p-1.5 sm:p-2 hover:scale-105 transition-transform duration-300">
+            <div className="p-1.5 sm:p-2  hover:scale-105 transition-transform duration-300">
               <button
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-400 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500 hover:bg-opacity-10 hover:shadow-[0_0_20px_rgba(180,0,255,0.9)] transition-all duration-300"
                 style={{
