@@ -10,8 +10,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className=
-          "fixed top-0 left-0 w-full h-auto md:h-30 z-50 backdrop-blur-md bg-white/4 flex items-center justify-between px-4 sm:px-6 sm:h-30 md:px-12 py-3"
+        className="fixed top-0 left-0 w-full h-auto md:h-50 z-50 backdrop-blur-md bg-white/4 border-b border-purple-500/10 flex items-center justify-between px-4 sm:px-6 sm:h-30 md:px-12 lg:px-20 py-6"
+        style={{
+          boxShadow: "0 4px 6px -1px rgba(180, 0, 255, 0.1), 0 2px 4px -1px rgba(180, 0, 255, 0.06)"
+        }}
       >
         {/* Left Side: Logo + Title */}
         <div className="flex items-center gap-2 sm:gap-3">
@@ -28,7 +30,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Side: Navigation Links (Desktop) */}
-        <ul className="hidden md:flex items-center gap-4 lg:gap-8 font-mono font-semibold text-purple-200">
+        <ul className="hidden lg:flex items-center gap-4 lg:gap-8 font-mono font-semibold text-purple-200">
           {[
             { name: "Home", href: "#home" },
             { name: "Schedule", href: "#schedule" },
@@ -47,9 +49,11 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile & Tablet Menu Button */}
         <button 
-          className="md:hidden text-3xl text-purple-300 hover:text-purple-400 transition relative z-[60]"
+          className="lg:hidden text-3xl text-purple-300 hover:text-purple-400 transition relative z-[60]
+                    flex items-center justify-center w-12 h-12 rounded-full bg-white/5 backdrop-blur-sm
+                    border border-purple-500/20 hover:bg-purple-500/10"
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
         >
@@ -57,9 +61,9 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile & Tablet Menu Overlay */}
       <div 
-        className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-br from-purple-900/15 to-blue-900/10 backdrop-blur-sm
+        className={`fixed top-0 right-0 h-full w-3/4 md:w-2/5 bg-gradient-to-br from-purple-900/15 to-blue-900/10 backdrop-blur-sm
                    border-l border-white/5 shadow-xl z-[55] 
                    transition-transform duration-300 ease-in-out pt-20 px-6
                    ${mobileMenuOpen ? 'mobile-menu-open' : 'mobile-menu-closed'}`}
