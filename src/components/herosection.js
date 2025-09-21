@@ -165,7 +165,7 @@ export default function HeroSection() {
         <img 
           src="/assests/CESA_WHITE.png" 
           alt="CESA Logo" 
-          className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[280px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
+          className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[200px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
           style={{
             filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))"
           }}
