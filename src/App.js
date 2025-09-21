@@ -1,14 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import HeroSection from './components/herosection';
-import Navbar from './components/navbar';
+import "./App.css";
+import HeroSection from "./components/herosection";
+import Navbar from "./components/navbar";
+import ProjectsPage from "./pages/ProjectsPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-   <>
-   <Navbar/>
-   <HeroSection/>
-   </>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HeroSection />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+      </Routes>
+    </Router>
   );
 }
 
