@@ -97,7 +97,7 @@ export default function ProjectsPage() {
         <h2 className="projects-page-title mb-8 text-4xl font-bold text-purple-200">
           Our Projects
         </h2>
-        <div className="projects-list neon-grid w-full max-w-6xl px-4 py-6">
+  <div className="projects-list w-full px-1 py-6" style={{paddingLeft: '3rem', paddingRight: '3rem', margin: '0 auto'}}>
           {projects.map((project, idx) => (
             <ProjectCard key={idx} {...project} />
           ))}
