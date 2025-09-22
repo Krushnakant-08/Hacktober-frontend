@@ -1,5 +1,5 @@
 import "./App.css";
-import HeroSection from "./components/herosection";
+import HeroSection from "./pages/herosection";
 import Navbar from "./components/navbar";
 import Schedule from "./pages/schedule";
 import ProjectsPage from "./pages/ProjectsPage";
