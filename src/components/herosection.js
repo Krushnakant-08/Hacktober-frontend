@@ -1,16 +1,18 @@
 import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
+  const navigate = useNavigate();
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d", { alpha: false }); // Disable alpha for better performance
-    
+
     // First, set initial canvas dimensions
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
+
     // Create particles - fewer particles on mobile for better performance
     const particleCount = window.innerWidth < 768 ? 30 : 60;
     let particles = Array.from({ length: particleCount }, () => ({
@@ -19,21 +21,21 @@ export default function HeroSection() {
       size: Math.random() * 2 + 1,
       speedY: Math.random() * 0.5 + 0.2,
     }));
-    
+
     // Now define resizeCanvas after particles is defined
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      
+
       // Recalculate particles on resize for better distribution
-      particles.forEach(p => {
+      particles.forEach((p) => {
         p.x = Math.random() * canvas.width;
         p.y = Math.random() * canvas.height;
       });
     };
 
     let animationFrameId;
-    
+
     function animate() {
       animationFrameId = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -45,14 +47,15 @@ export default function HeroSection() {
       // Perspective grid - improved vertical lines
       const centerX = Math.floor(canvas.width / 2);
       const centerY = Math.floor(canvas.height / 2);
-      
+
       // Adjust grid size based on screen width for responsiveness
       const gridSize = canvas.width < 768 ? 60 : 40; // Wider spacing on mobile
-      
+
       // Reduce number of lines on smaller screens for better performance
-      const maxLines = canvas.width < 768 ? Math.floor(canvas.width / gridSize) : Infinity;
+      const maxLines =
+        canvas.width < 768 ? Math.floor(canvas.width / gridSize) : Infinity;
       let lineCount = 0;
-      
+
       // Draw each line individually for better precision
       for (let x = 0; x < canvas.width; x += gridSize) {
         if (lineCount >= maxLines) break;
@@ -64,10 +67,10 @@ export default function HeroSection() {
         ctx.stroke();
         lineCount++;
       }
-      
+
       // Reset line count for right side
       lineCount = 0;
-      
+
       // Draw lines on the right side too
       for (let x = canvas.width; x > centerX; x -= gridSize) {
         if (lineCount >= maxLines) break;
@@ -83,15 +86,22 @@ export default function HeroSection() {
       // Floating particles with improved rendering
       particles.forEach((p) => {
         // Create a glow effect
-        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+        const gradient = ctx.createRadialGradient(
+          p.x,
+          p.y,
+          0,
+          p.x,
+          p.y,
+          p.size * 2
+        );
         gradient.addColorStop(0, "rgba(220, 130, 255, 0.8)");
         gradient.addColorStop(1, "rgba(180, 0, 255, 0)");
-        
+
         ctx.beginPath();
         ctx.fillStyle = gradient;
         ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
         ctx.fill();
-        
+
         // Update position
         p.y += p.speedY;
         if (p.y > canvas.height) p.y = 0;
@@ -99,13 +109,13 @@ export default function HeroSection() {
     }
 
     animate();
-    
+
     // Handle window resize
-    window.addEventListener('resize', resizeCanvas);
-    
+    window.addEventListener("resize", resizeCanvas);
+
     // Cleanup function
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -141,6 +151,7 @@ export default function HeroSection() {
                   boxShadow:
                     "0 0 10px rgba(180,0,255,0.6), inset 0 0 10px rgba(180,0,255,0.6)",
                 }}
+                onClick={() => navigate("/projects")}
               >
                 Explore Projects
               </button>
@@ -159,15 +170,15 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      
+
       {/* CESA Logo at Bottom */}
       <div className="absolute bottom-1 w-full flex justify-center z-20">
-        <img 
-          src="/assests/CESA_WHITE.png" 
-          alt="CESA Logo" 
+        <img
+          src="/assests/CESA_WHITE.png"
+          alt="CESA Logo"
           className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[280px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
           style={{
-            filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))"
+            filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))",
           }}
         />
       </div>
