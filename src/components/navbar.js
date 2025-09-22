@@ -3,6 +3,15 @@ import React, { useState } from "react";
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Navigation links array - used for both desktop and mobile menus
+  const navigationLinks = [
+    { name: "Home", href: "/" },
+    { name: "Schedule", href: "/schedule" },
+    { name: "Leaderboard", href: "/leaderboard" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -10,7 +19,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 w-full h-auto md:h-50 z-50 backdrop-blur-md bg-white/4 border-b border-purple-500/10 flex items-center justify-between px-4 sm:px-6 sm:h-30 md:px-12 lg:px-20 py-6"
+        className="fixed top-0 left-0 w-full h-auto md:h-[110px] z-50 backdrop-blur-md bg-white/4 border-b border-purple-500/10 flex items-center justify-between px-4 sm:px-6 sm:h-30 md:px-12 lg:px-20 py-6"
         style={{
           boxShadow: "0 4px 6px -1px rgba(180, 0, 255, 0.1), 0 2px 4px -1px rgba(180, 0, 255, 0.06)"
         }}
@@ -31,13 +40,7 @@ export default function Navbar() {
 
         {/* Right Side: Navigation Links (Desktop) */}
         <ul className="hidden lg:flex items-center gap-4 lg:gap-8 font-mono font-semibold text-purple-200">
-          {[
-            { name: "Home", href: "#home" },
-            { name: "Schedule", href: "#schedule" },
-            { name: "Leaderboard", href: "#leaderboard" },
-            { name: "About", href: "#about" },
-            { name: "Contact", href: "#contact" },
-          ].map((link) => (
+          {navigationLinks.map((link) => (
             <li key={link.name}>
               <a
                 href={link.href}
@@ -80,13 +83,7 @@ export default function Navbar() {
         </button>
         
         <ul className="flex flex-col items-start gap-1 font-mono font-semibold text-white/90 pt-4">
-          {[
-            { name: "Home", href: "#home" },
-            { name: "Schedule", href: "#schedule" },
-            { name: "Leaderboard", href: "#leaderboard" },
-            { name: "About", href: "#about" },
-            { name: "Contact", href: "#contact" },
-          ].map((link) => (
+          {navigationLinks.map((link) => (
             <li key={link.name} className="w-full mb-5 border-b border-white/10 py-4 pb-1">
               <a
                 href={link.href}

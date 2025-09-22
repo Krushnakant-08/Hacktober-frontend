@@ -2,17 +2,17 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
-  const navigate = useNavigate();
   const canvasRef = useRef(null);
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d", { alpha: false }); // Disable alpha for better performance
-
+    
     // First, set initial canvas dimensions
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
+    
     // Create particles - fewer particles on mobile for better performance
     const particleCount = window.innerWidth < 768 ? 30 : 60;
     let particles = Array.from({ length: particleCount }, () => ({
@@ -21,21 +21,21 @@ export default function HeroSection() {
       size: Math.random() * 2 + 1,
       speedY: Math.random() * 0.5 + 0.2,
     }));
-
+    
     // Now define resizeCanvas after particles is defined
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-
+      
       // Recalculate particles on resize for better distribution
-      particles.forEach((p) => {
+      particles.forEach(p => {
         p.x = Math.random() * canvas.width;
         p.y = Math.random() * canvas.height;
       });
     };
 
     let animationFrameId;
-
+    
     function animate() {
       animationFrameId = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -47,15 +47,14 @@ export default function HeroSection() {
       // Perspective grid - improved vertical lines
       const centerX = Math.floor(canvas.width / 2);
       const centerY = Math.floor(canvas.height / 2);
-
+      
       // Adjust grid size based on screen width for responsiveness
       const gridSize = canvas.width < 768 ? 60 : 40; // Wider spacing on mobile
-
+      
       // Reduce number of lines on smaller screens for better performance
-      const maxLines =
-        canvas.width < 768 ? Math.floor(canvas.width / gridSize) : Infinity;
+      const maxLines = canvas.width < 768 ? Math.floor(canvas.width / gridSize) : Infinity;
       let lineCount = 0;
-
+      
       // Draw each line individually for better precision
       for (let x = 0; x < canvas.width; x += gridSize) {
         if (lineCount >= maxLines) break;
@@ -67,10 +66,10 @@ export default function HeroSection() {
         ctx.stroke();
         lineCount++;
       }
-
+      
       // Reset line count for right side
       lineCount = 0;
-
+      
       // Draw lines on the right side too
       for (let x = canvas.width; x > centerX; x -= gridSize) {
         if (lineCount >= maxLines) break;
@@ -86,22 +85,15 @@ export default function HeroSection() {
       // Floating particles with improved rendering
       particles.forEach((p) => {
         // Create a glow effect
-        const gradient = ctx.createRadialGradient(
-          p.x,
-          p.y,
-          0,
-          p.x,
-          p.y,
-          p.size * 2
-        );
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
         gradient.addColorStop(0, "rgba(220, 130, 255, 0.8)");
         gradient.addColorStop(1, "rgba(180, 0, 255, 0)");
-
+        
         ctx.beginPath();
         ctx.fillStyle = gradient;
         ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
         ctx.fill();
-
+        
         // Update position
         p.y += p.speedY;
         if (p.y > canvas.height) p.y = 0;
@@ -109,19 +101,19 @@ export default function HeroSection() {
     }
 
     animate();
-
+    
     // Handle window resize
-    window.addEventListener("resize", resizeCanvas);
-
+    window.addEventListener('resize', resizeCanvas);
+    
     // Cleanup function
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <section id="home" className="relative h-screen w-full overflow-hidden">
       {/* Background Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
@@ -143,22 +135,22 @@ export default function HeroSection() {
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-purple-200 font-mono max-w-4xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed text-shadow font-semibold">
             Presented by PCCoE ACM. Your journey into open source begins now.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-6">
-            <div className="p-1.5 sm:p-2  hover:scale-105 transition-transform duration-300">
+          <div className="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-8">
+            <div className="p-3 sm:p-4">
               <button
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-400 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500 hover:bg-opacity-10 hover:shadow-[0_0_20px_rgba(180,0,255,0.9)] transition-all duration-300"
+                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-400 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.9)] transform hover:scale-105 transition-all duration-300"
                 style={{
                   boxShadow:
                     "0 0 10px rgba(180,0,255,0.6), inset 0 0 10px rgba(180,0,255,0.6)",
                 }}
-                onClick={() => navigate("/projects")}
+                onClick={() => Navigate('/projects')}
               >
                 Explore Projects
               </button>
             </div>
-            <div className="p-1.5 sm:p-2 hover:scale-105 transition-transform duration-300">
+            <div className="p-3 sm:p-4">
               <button
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-400 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500 hover:bg-opacity-10 hover:shadow-[0_0_20px_rgba(180,0,255,0.9)] transition-all duration-300"
+                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-400 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.9)] transform hover:scale-105 transition-all duration-300"
                 style={{
                   boxShadow:
                     "0 0 10px rgba(180,0,255,0.6), inset 0 0 10px rgba(180,0,255,0.6)",
@@ -170,18 +162,18 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-
+      
       {/* CESA Logo at Bottom */}
       <div className="absolute bottom-1 w-full flex justify-center z-20">
-        <img
-          src="/assests/CESA_WHITE.png"
-          alt="CESA Logo"
-          className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[280px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
+        <img 
+          src="/assests/CESA_WHITE.png" 
+          alt="CESA Logo" 
+          className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[255px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
           style={{
-            filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))",
+            filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))"
           }}
         />
       </div>
-    </div>
+    </section>
   );
 }
