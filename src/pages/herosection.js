@@ -163,8 +163,8 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* CESA Logo at Bottom */}
-      <div className="absolute bottom-1 w-full flex justify-center z-20">
+      {/* CESA Logo at Bottom - Behind the buttons */}
+      <div className="absolute bottom-1 w-full flex justify-center z-5">
         <img 
           src="/assests/CESA_WHITE.png" 
           alt="CESA Logo" 
