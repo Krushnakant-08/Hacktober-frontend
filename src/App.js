@@ -1,5 +1,5 @@
 import "./App.css";
-import HeroSection from "./components/herosection";
+import HeroSection from "./pages/herosection";
 import Navbar from "./components/navbar";
 import ProjectsPage from "./pages/ProjectsPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
