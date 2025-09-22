@@ -12,7 +12,9 @@ function App() {
       <Routes>
         <Route path="/" element={
           <div className="w-full">
-            <HeroSection />
+            <div id="hero">
+              <HeroSection />
+            </div>
             <div id="schedule">
               <Schedule />
             </div>
