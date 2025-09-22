@@ -10,7 +10,14 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HeroSection />} />
+        <Route path="/" element={
+          <div className="w-full">
+            <HeroSection />
+            <div id="schedule">
+              <Schedule />
+            </div>
+          </div>
+        } />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/schedule" element={<Schedule />} />
       </Routes>

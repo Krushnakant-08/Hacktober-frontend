@@ -1,19 +1,50 @@
 import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Navigation links array - used for both desktop and mobile menus
   const navigationLinks = [
-    { name: "Home", href: "/" },
-    { name: "Schedule", href: "/schedule" },
-    { name: "Leaderboard", href: "/leaderboard" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", href: "#hero", type: "scroll" },
+    { name: "Schedule", href: "#schedule", type: "scroll" },
+    { name: "Leaderboard", href: "/leaderboard", type: "route" },
+    { name: "About", href: "/about", type: "route" },
+    { name: "Contact", href: "/contact", type: "route" },
   ];
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleNavigation = (link) => {
+    if (link.type === "scroll") {
+      // If we're not on the home page, navigate to home first
+      if (location.pathname !== "/") {
+        navigate("/");
+        // Wait for navigation to complete, then scroll
+        setTimeout(() => {
+          const elementId = link.href.substring(1); // Remove the # from href
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        // We're already on home page, just scroll
+        const elementId = link.href.substring(1); // Remove the # from href
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    } else {
+      // Regular route navigation
+      navigate(link.href);
+    }
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -25,7 +56,7 @@ export default function Navbar() {
         }}
       >
         {/* Left Side: Logo + Title */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => handleNavigation({ href: "#hero", type: "scroll" })}>
           <img
             src="/assests/ACM.png"
             alt="ACM Logo"
@@ -42,12 +73,12 @@ export default function Navbar() {
         <ul className="hidden lg:flex items-center gap-4 lg:gap-8 font-mono font-semibold text-purple-200">
           {navigationLinks.map((link) => (
             <li key={link.name}>
-              <a
-                href={link.href}
-                className="hover:text-purple-400 transition-colors text-lg lg:text-2xl duration-300"
+              <button
+                onClick={() => handleNavigation(link)}
+                className="hover:text-purple-400 transition-colors text-lg lg:text-2xl duration-300 bg-transparent border-none cursor-pointer"
               >
                 {link.name}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
@@ -85,14 +116,13 @@ export default function Navbar() {
         <ul className="flex flex-col items-start gap-1 font-mono font-semibold text-white/90 pt-4">
           {navigationLinks.map((link) => (
             <li key={link.name} className="w-full mb-5 border-b border-white/10 py-4 pb-1">
-              <a
-                href={link.href}
+              <button
+                onClick={() => handleNavigation(link)}
                 className="text-xl tracking-wide hover:text-purple-300 
-                          transition-all duration-300 hover:translate-x-1 pl-2 block"
-                onClick={() => setMobileMenuOpen(false)}
+                          transition-all duration-300 hover:translate-x-1 pl-2 block bg-transparent border-none cursor-pointer text-left w-full"
               >
                 {link.name}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
