@@ -50,7 +50,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 w-full h-auto md:h-[110px] z-50 backdrop-blur-md bg-white/4 border-b border-purple-500/10 flex items-center justify-between px-4 sm:px-6 sm:h-30 md:px-12 lg:px-20 py-6"
+        className="fixed top-0 left-0 w-full h-auto md:h-[110px] z-50 backdrop-blur-md bg-white/4 border-b border-purple-600/60 flex items-center justify-between px-4 sm:px-6 sm:h-30 md:px-12 lg:px-20 py-6"
         style={{
           boxShadow: "0 4px 6px -1px rgba(180, 0, 255, 0.1), 0 2px 4px -1px rgba(180, 0, 255, 0.06)"
         }}

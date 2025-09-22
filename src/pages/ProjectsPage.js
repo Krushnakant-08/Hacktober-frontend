@@ -95,9 +95,9 @@ export default function ProjectsPage() {
       {/* Overlay Content */}
       <div className="relative z-10 flex flex-col items-center w-full pt-32 pb-8">
         <h2 className="projects-page-title mb-8 text-4xl font-bold text-purple-200">
-          Our Projects
+          Projects to contribute
         </h2>
-  <div className="projects-list w-full px-1 py-6" style={{paddingLeft: '3rem', paddingRight: '3rem', margin: '0 auto'}}>
+  <div className="projects-list w-full px-1 py-8" style={{paddingLeft: '4rem', paddingRight: '3rem', margin: '0 auto'}}>
           {projects.map((project, idx) => (
             <ProjectCard key={idx} {...project} />
           ))}

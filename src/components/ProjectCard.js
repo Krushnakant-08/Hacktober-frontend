@@ -13,7 +13,7 @@ export default function ProjectCard({ title, description, image, link }) {
 
   return (
     <div
-      className="bg-[rgba(20,20,30,0.95)] rounded-[1.2rem] shadow-lg shadow-purple-500/5 hover:shadow-purple-500/20 border-[1.5px] border-purple-500/[0.2] hover:border-purple-400/30 p-8 pb-6 my-5 flex flex-col items-center min-w-[300px] max-w-[400px] relative overflow-hidden preserve-3d backface-hidden z-10 transition-all duration-400 isolate hover:after:opacity-100 after:content-[''] after:absolute after:inset-[-1px] after:rounded-inherit after:bg-gradient-to-tr after:from-purple-500/[0.05] after:to-60% after:to-transparent after:translate-z-1 after:pointer-events-none after:transition-opacity after:duration-300 after:opacity-0 hover:bg-[rgba(25,20,35,0.95)]"
+      className="bg-[rgba(20,20,30,0.95)] rounded-[1.2rem] shadow-lg shadow-purple-500/5 hover:shadow-purple-500/20 border-[1.5px] border-purple-500/[0.2] hover:border-purple-400/30 p-8 pb-6 my-5 flex flex-col items-center min-w-[300px] max-w-[500px] relative overflow-hidden preserve-3d backface-hidden z-10 transition-all duration-400 isolate hover:after:opacity-100 after:content-[''] after:absolute after:inset-[-1px] after:rounded-inherit after:bg-gradient-to-tr after:from-purple-500/[0.05] after:to-60% after:to-transparent after:translate-z-1 after:pointer-events-none after:transition-opacity after:duration-300 after:opacity-0 hover:bg-[rgba(25,20,35,0.95)]"
       style={{
         ...style,
         transformStyle: 'preserve-3d',
@@ -31,8 +31,8 @@ export default function ProjectCard({ title, description, image, link }) {
         />
       )}
       <div className="w-full text-center translate-z-30">
-        <h3 className="text-xl font-semibold mb-2.5 text-purple-100 tracking-wide transition-colors">{title}</h3>
-        <p className="text-base text-gray-300 mb-4 min-h-[48px]">{description}</p>
+        <h2 className="text-2xl font-semibold mb-2.5 text-purple-100 tracking-wide transition-colors">{title}</h2>
+        <p className=" text-gray-300 mb-4 min-h-[48px] text-xl">{description}</p>
         {link && (
           <div className="flex justify-center w-full">
             <GlareHover
