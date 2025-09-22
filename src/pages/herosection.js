@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function HeroSection() {
   const canvasRef = useRef(null);
@@ -7,13 +8,11 @@ export default function HeroSection() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d", { alpha: false }); // Disable alpha for better performance
-    
-    // First, set initial canvas dimensions
+    const ctx = canvas.getContext("2d", { alpha: false });
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
-    // Create particles - fewer particles on mobile for better performance
+
     const particleCount = window.innerWidth < 768 ? 30 : 60;
     let particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * canvas.width,
@@ -21,13 +20,10 @@ export default function HeroSection() {
       size: Math.random() * 2 + 1,
       speedY: Math.random() * 0.5 + 0.2,
     }));
-    
-    // Now define resizeCanvas after particles is defined
+
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      
-      // Recalculate particles on resize for better distribution
       particles.forEach(p => {
         p.x = Math.random() * canvas.width;
         p.y = Math.random() * canvas.height;
@@ -35,27 +31,20 @@ export default function HeroSection() {
     };
 
     let animationFrameId;
-    
+
     function animate() {
       animationFrameId = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Background
       ctx.fillStyle = "#0D0C1D";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Perspective grid - improved vertical lines
       const centerX = Math.floor(canvas.width / 2);
       const centerY = Math.floor(canvas.height / 2);
-      
-      // Adjust grid size based on screen width for responsiveness
-      const gridSize = canvas.width < 768 ? 60 : 40; // Wider spacing on mobile
-      
-      // Reduce number of lines on smaller screens for better performance
+      const gridSize = canvas.width < 768 ? 60 : 40;
       const maxLines = canvas.width < 768 ? Math.floor(canvas.width / gridSize) : Infinity;
       let lineCount = 0;
-      
-      // Draw each line individually for better precision
+
       for (let x = 0; x < canvas.width; x += gridSize) {
         if (lineCount >= maxLines) break;
         ctx.beginPath();
@@ -66,11 +55,9 @@ export default function HeroSection() {
         ctx.stroke();
         lineCount++;
       }
-      
-      // Reset line count for right side
+
       lineCount = 0;
-      
-      // Draw lines on the right side too
+
       for (let x = canvas.width; x > centerX; x -= gridSize) {
         if (lineCount >= maxLines) break;
         ctx.beginPath();
@@ -82,30 +69,25 @@ export default function HeroSection() {
         lineCount++;
       }
 
-      // Floating particles with improved rendering
       particles.forEach((p) => {
-        // Create a glow effect
         const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
         gradient.addColorStop(0, "rgba(220, 130, 255, 0.8)");
         gradient.addColorStop(1, "rgba(180, 0, 255, 0)");
-        
+
         ctx.beginPath();
         ctx.fillStyle = gradient;
         ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
         ctx.fill();
-        
-        // Update position
+
         p.y += p.speedY;
         if (p.y > canvas.height) p.y = 0;
       });
     }
 
     animate();
-    
-    // Handle window resize
+
     window.addEventListener('resize', resizeCanvas);
-    
-    // Cleanup function
+
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
@@ -114,27 +96,35 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden">
-      {/* Background Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Gradient overlay for depth - MOVED HERE and given z-0 */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0D0C1D] via-transparent to-transparent pointer-events-none z-0" />
 
-      {/* Overlay Content - Perfectly Centered */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="text-center px-4 sm:px-6 max-w-6xl overflow-hidden">
-          <h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-mono font-bold text-purple-400 mb-4 sm:mb-6 md:mb-8"
-            style={{
-              textShadow:
-                "0 0 8px rgba(180,0,255,0.6), 0 0 15px rgba(180,0,255,0.4)",
-            }}
-          >
-            Hacktoberfest 2025
-          </h1>
+         <h1
+  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-mono font-bold text-purple-400 mb-4 sm:mb-6 md:mb-8"
+  style={{
+    textShadow:
+      "0 0 8px rgba(180,0,255,0.6), 0 0 15px rgba(180,0,255,0.4)",
+  }}
+>
+  <Typewriter
+    words={["Hacktoberfest 2025"]}
+    loop={false}
+    // cursor
+    // cursorStyle="|"
+    typeSpeed={100}
+    // deleteSpeed={1}
+    delaySpeed={100}
+  />
+</h1>
+
+
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-purple-200 font-mono max-w-4xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed text-shadow font-semibold">
             Presented by PCCoE ACM. Your journey into open source begins now.
           </p>
+
           <div className="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-8">
             <div className="p-3 sm:p-4">
               <button
@@ -162,12 +152,11 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      
-      {/* CESA Logo at Bottom */}
+
       <div className="absolute bottom-1 w-full flex justify-center z-20">
-        <img 
-          src="/assests/CESA_WHITE.png" 
-          alt="CESA Logo" 
+        <img
+          src="/assests/CESA_WHITE.png"
+          alt="CESA Logo"
           className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[255px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
           style={{
             filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))"
