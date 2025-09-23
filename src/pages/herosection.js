@@ -154,17 +154,10 @@ export default function HeroSection() {
       </div>
 
       <div className="absolute bottom-1 w-full flex justify-center z-20">
-<<<<<<< HEAD:src/components/herosection.js
-        <img 
-          src="/assests/CESA_WHITE.png" 
-          alt="CESA Logo" 
-          className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[200px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
-=======
         <img
           src="/assests/CESA_WHITE.png"
           alt="CESA Logo"
           className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[255px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
->>>>>>> c14715f1b60a70547764c44995853394795c5c9b:src/pages/herosection.js
           style={{
             filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))"
           }}
