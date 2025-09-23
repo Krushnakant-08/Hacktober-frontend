@@ -27,12 +27,13 @@ const ContactPage = () => {
   };
 
   return (
-  <div className="flex flex-col md:flex-row justify-center items-stretch gap-0 py-8 bg-[#22103a] rounded-2xl shadow-lg max-w-4xl mx-auto">
+  <div className="min-h-screen bg-[#0D0C1D] py-4 md:py-8 px-4 md:px-8 lg:px-16">
+  <div className="flex flex-col md:flex-row justify-center items-stretch gap-0 py-4 md:py-8 bg-[#22103a] rounded-2xl shadow-lg max-w-4xl my-4 md:my-8 mx-auto">
       {/* Left Side: Info Box */}
       <div className="flex-1 flex items-center justify-center">
-        <div className="w-full max-w-md bg-transparent p-8 min-h-[350px] flex flex-col justify-center">
-    <h1 className="text-3xl font-bold text-center text-[#e0aaff] mb-4 drop-shadow-[0_0_16px_#9d00ff]">Get in Touch</h1>
-    <p className="text-[#e0aaff] text-center mb-6">We'd love to hear from you. Whether you have a question, a suggestion, or just want to say hi, drop us a line!</p>
+        <div className="w-full max-w-md bg-transparent p-4 md:p-8 min-h-[250px] md:min-h-[350px] flex flex-col justify-center">
+    <h1 className="text-2xl md:text-3xl font-bold text-center text-[#e0aaff] mb-3 md:mb-4 drop-shadow-[0_0_16px_#9d00ff]">Get in Touch</h1>
+    <p className="text-[#e0aaff] text-center mb-4 md:mb-6 text-sm md:text-base">We'd love to hear from you. Whether you have a question, a suggestion, or just want to say hi, drop us a line!</p>
     <div className="text-center space-y-2">
   <p className="text-[#a259f7] font-semibold">contact.hactober@pccoepune.org</p>
   <p className="text-[#a259f7] font-semibold">98989-----</p>
@@ -43,9 +44,9 @@ const ContactPage = () => {
       <div className="hidden md:block w-px bg-[#3a0ca3]/30 my-12"></div>
       {/* Right Side: Form Box */}
       <div className="flex-1 flex items-center justify-center">
-        <div className="w-full max-w-md bg-transparent p-8 min-h-[350px] flex flex-col justify-center">
-          <h2 className="text-4xl font-bold text-center text-[#e0aaff] mb-6 drop-shadow-[0_0_16px_#9d00ff]">Contact Us</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="w-full max-w-md bg-transparent p-4 md:p-8 min-h-[250px] md:min-h-[350px] flex flex-col justify-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#e0aaff] mb-4 md:mb-6 drop-shadow-[0_0_16px_#9d00ff]">Contact Us</h2>
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
             <div>
               <label htmlFor="name" className="block text-[#e0aaff] font-semibold mb-1">Your Name</label>
               <input
@@ -103,6 +104,7 @@ const ContactPage = () => {
         </div>
 
       </div>
+    </div>
     </div>
   );
 };
