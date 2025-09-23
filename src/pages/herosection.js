@@ -152,11 +152,12 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-
-      <div className="absolute bottom-1 w-full flex justify-center z-20">
-        <img
-          src="/assests/CESA_WHITE.png"
-          alt="CESA Logo"
+      
+      {/* CESA Logo at Bottom - Behind the buttons */}
+      <div className="absolute bottom-1 w-full flex justify-center z-5">
+        <img 
+          src="/assests/CESA_WHITE.png" 
+          alt="CESA Logo" 
           className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[255px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
           style={{
             filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))"

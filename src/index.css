@@ -30,3 +30,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Custom autofill styling for contact form */
+.contact-input:-webkit-autofill,
+.contact-input:-webkit-autofill:hover,
+.contact-input:-webkit-autofill:focus,
+.contact-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #2d014d inset !important;
+  -webkit-text-fill-color: #e0aaff !important;
+  background-color: #2d014d !important;
+  border: 2px solid #9d00ff !important;
+}
+
+/* For Firefox */
+.contact-input:-moz-autofill {
+  background-color: #2d014d !important;
+  color: #e0aaff !important;
+  border: 2px solid #9d00ff !important;
+}
+
+/* White cursor/caret for input fields */
+.contact-input {
+  caret-color: white !important;
+}
