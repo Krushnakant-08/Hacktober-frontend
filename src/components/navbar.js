@@ -8,11 +8,11 @@ export default function Navbar() {
 
   // Navigation links array - used for both desktop and mobile menus
   const navigationLinks = [
-    { name: "Home", href: "#hero", type: "scroll" },
+    { name: "Home", href: "#home", type: "scroll" },
     { name: "Schedule", href: "#schedule", type: "scroll" },
     { name: "Leaderboard", href: "/leaderboard", type: "route" },
     { name: "About", href: "/about", type: "route" },
-    { name: "Contact", href: "/contact", type: "route" },
+    { name: "Contact", href: "#contact", type: "scroll" },
   ];
 
   const toggleMobileMenu = () => {
