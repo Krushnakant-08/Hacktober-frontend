@@ -55,7 +55,7 @@ const ContactPage = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg bg-[#2d014d] text-[#e0aaff] border-2 border-[#9d00ff] focus:outline-none focus:ring-2 focus:ring-[#e0aaff] shadow-[0_0_16px_#9d00ff] placeholder-[#a259f7] autofill:!bg-[#2d014d] autofill:!text-[#e0aaff]"
+                className="contact-input w-full px-4 py-2 rounded-lg bg-[#2d014d] text-[#e0aaff] border-2 border-[#9d00ff] focus:outline-none focus:ring-2 focus:ring-[#e0aaff] shadow-[0_0_7px_#9d00ff] placeholder-[#a259f7]"
                 placeholder="Enter your name"
               />
             </div>
@@ -68,7 +68,7 @@ const ContactPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg bg-[#2d014d] text-[#e0aaff] border-2 border-[#9d00ff] focus:outline-none focus:ring-2 focus:ring-[#e0aaff] shadow-[0_0_16px_#9d00ff] placeholder-[#a259f7] autofill:!bg-[#2d014d] autofill:!text-[#e0aaff]"
+                className="contact-input w-full px-4 py-2 rounded-lg bg-[#2d014d] text-[#e0aaff] border-2 border-[#9d00ff] focus:outline-none focus:ring-2 focus:ring-[#e0aaff] shadow-[0_0_7px_#9d00ff] placeholder-[#a259f7]"
                 placeholder="Enter your email"
               />
             </div>
@@ -81,7 +81,7 @@ const ContactPage = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg bg-[#2d014d] text-[#e0aaff] border-2 border-[#9d00ff] focus:outline-none focus:ring-2 focus:ring-[#e0aaff] shadow-[0_0_16px_#9d00ff] placeholder-[#a259f7] autofill:!bg-[#2d014d] autofill:!text-[#e0aaff]"
+                className="contact-input w-full px-4 py-2 rounded-lg bg-[#2d014d] text-[#e0aaff] border-2 border-[#9d00ff] focus:outline-none focus:ring-2 focus:ring-[#e0aaff] shadow-[0_0_7px_#9d00ff] placeholder-[#a259f7]"
                 placeholder="Type your suggestion..."
               ></textarea>
             </div>
