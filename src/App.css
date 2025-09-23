@@ -1,3 +1,7 @@
+.projects-page-title {
+  margin-top: 3.5rem;
+}
+
 /* Base styles */
 * {
   box-sizing: border-box;
@@ -6,8 +10,8 @@
 }
 
 body {
-  font-family: 'Courier New', monospace;
-  background-color: #0D0C1D;
+  font-family: "Courier New", monospace;
+  background-color: #0d0c1d;
   color: #f5f5f5;
   overflow-x: hidden;
 }
@@ -86,11 +90,187 @@ html {
 
 /* Text shadow utility */
 .text-shadow {
-  text-shadow: 0 0 8px rgba(180,0,255,0.6), 0 0 15px rgba(180,0,255,0.4);
+  text-shadow: 0 0 8px rgba(180, 0, 255, 0.6), 0 0 15px rgba(180, 0, 255, 0.4);
 }
 
 /* Make images responsive by default */
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Minimalist Project Card Styles */
+.project-card {
+  background: rgba(20, 20, 30, 0.95);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px 0 rgba(80, 0, 120, 0.12),
+    0 1.5px 8px 0 rgba(80, 0, 120, 0.1);
+  border: 1.5px solid rgba(180, 0, 255, 0.13);
+  transition: transform 0.18s cubic-bezier(0.4, 2, 0.6, 1),
+    box-shadow 0.18s cubic-bezier(0.4, 2, 0.6, 1);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  margin: 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+  max-width: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-7px) scale(1.025) rotate(-0.5deg);
+  box-shadow: 0 8px 32px 0 rgba(180, 0, 255, 0.18),
+    0 2.5px 12px 0 rgba(80, 0, 120, 0.13);
+  border-color: rgba(180, 0, 255, 0.22);
+}
+
+.project-card-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 12px 0 rgba(180, 0, 255, 0.1);
+  transition: box-shadow 0.2s;
+}
+
+.project-card:hover .project-card-image {
+  box-shadow: 0 4px 24px 0 rgba(180, 0, 255, 0.18);
+}
+
+.project-card-content {
+  width: 100%;
+  text-align: center;
+}
+
+.project-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  color: #e0c3fc;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.project-card-description {
+  font-size: 1rem;
+  color: #b8b8d1;
+  margin-bottom: 1.1rem;
+  min-height: 48px;
+}
+/* Glare Hover Button Effect */
+/* Project Card Link hover styles handled by GlareHover component */
+
+/* Fancy animated border effect */
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 1.3rem;
+  background: linear-gradient(
+    120deg,
+    rgba(180, 0, 255, 0.18),
+    rgba(106, 130, 251, 0.13),
+    rgba(180, 0, 255, 0.18)
+  );
+  z-index: 0;
+  opacity: 0.7;
+  pointer-events: none;
+  filter: blur(2px);
+  transition: opacity 0.2s;
+}
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive grid for project cards */
+
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  align-items: stretch;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .projects-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .projects-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-list {
+    grid-template-columns: 1fr;
+  }
+}
+.glare-hover {
+  width: var(--gh-width);
+  height: var(--gh-height);
+  background: var(--gh-bg);
+  border-radius: var(--gh-br);
+  border: 1px solid var(--gh-border);
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.glare-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    var(--gh-angle),
+    hsla(0, 0%, 0%, 0) 60%,
+    var(--gh-rgba) 70%,
+    hsla(0, 0%, 0%, 0),
+    hsla(0, 0%, 0%, 0) 100%
+  );
+  transition: var(--gh-duration) ease;
+  background-size:
+    var(--gh-size) var(--gh-size),
+    100% 100%;
+  background-repeat: no-repeat;
+  background-position:
+    -100% -100%,
+    0 0;
+}
+
+.glare-hover:hover {
+  cursor: pointer;
+}
+
+.glare-hover:hover::before {
+  background-position:
+    100% 100%,
+    0 0;
+}
+
+.glare-hover--play-once::before {
+  transition: none;
+}
+
+.glare-hover--play-once:hover::before {
+  transition: var(--gh-duration) ease;
+  background-position:
+    100% 100%,
+    0 0;
 }

@@ -1,16 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-import HeroSection from './components/herosection';
-import Navbar from './components/navbar';
-import Contacts from './pages/contacts';
+import "./App.css";
+import HeroSection from "./pages/herosection";
+import Navbar from "./components/navbar";
+import Schedule from "./pages/schedule";
+import ProjectsPage from "./pages/ProjectsPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-   <>
-   <Navbar/>
-   <HeroSection/>
-   <Contacts/>
-   </>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={
+          <div className="w-full">
+            <HeroSection />
+            <div id="schedule">
+              <Schedule />
+            </div>
+          </div>
+        } />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/schedule" element={<Schedule />} />
+      </Routes>
+    </Router>
   );
 }
 
