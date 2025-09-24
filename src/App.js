@@ -5,6 +5,7 @@ import Schedule from "./pages/schedule";
 import ProjectsPage from "./pages/ProjectsPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ContactPage from "./pages/contacts";
+import Footer from "./components/Footer";
 import About from "./pages/About";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<About />} />  
       </Routes>
+      <Footer />
     </Router>
   );
 }
