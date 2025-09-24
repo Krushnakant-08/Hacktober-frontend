@@ -14,14 +14,7 @@ export default function About() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#0D0C1D] via-[#22103a] to-[#0D0C1D]"></div>
       
       <div className="relative z-20 max-w-6xl pt-32 mx-auto px-6 py-20">
-        {/* Title + Logo */}
-        <div className="flex flex-col items-center justify-center gap-4 mb-12">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-mono font-bold text-purple-400 neon-text">
-            Hacktoberfest 2025
-          </h1>
-          
-          
-        </div>
+       
 
         {/* Intro Section */}
         <section className="mb-16 flex flex-col items-center gap-6 text-center">

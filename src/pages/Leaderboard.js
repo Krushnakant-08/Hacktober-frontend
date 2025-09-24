@@ -19,7 +19,7 @@ const Leaderboard = () => {
 
         {/* Coming Soon Message */}
         <div className="bg-[#1a0d3b] rounded-2xl shadow-md p-12 max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold font-bold text-purple-300 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-purple-300 mb-6">
             🚀 Coming Soon!
           </h2>
           <p className="text-xl text-purple-200 mb-6 leading-relaxed">
