@@ -5,6 +5,7 @@ import Schedule from "./pages/schedule";
 import ProjectsPage from "./pages/ProjectsPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ContactPage from "./pages/contacts";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -21,12 +22,17 @@ function App() {
             </div>
             <div id="contact">
               <ContactPage />
-            </div>
+            </div >
+            {/* <div id="about">
+              <About />
+            </div> */}
+            
           </div>
         } />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<About />} />  
       </Routes>
     </Router>
   );
