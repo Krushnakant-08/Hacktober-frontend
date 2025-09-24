@@ -20,7 +20,7 @@ function Schedule() {
   }, []);
 
   return (
-    <div id="schedule" className="min-h-screen bg-[#0D0C1D] pt-32 pb-16 px-4">
+    <div id="schedule" className="min-h-screen bg-[#0D0C1D] pt-32 pb-16 px-4 relative z-10">
       <div className="relative max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
