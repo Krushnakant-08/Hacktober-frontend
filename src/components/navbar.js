@@ -29,7 +29,7 @@ export default function Navbar() {
           const elementId = link.href.substring(1); // Remove the # from href
           const element = document.getElementById(elementId);
           if (element) {
-            const navbarHeight = 120; // Account for fixed navbar height
+            const navbarHeight = 60; // Account for fixed navbar height
             const elementPosition = element.offsetTop - navbarHeight;
             window.scrollTo({
               top: elementPosition,
@@ -42,7 +42,7 @@ export default function Navbar() {
         const elementId = link.href.substring(1); // Remove the # from href
         const element = document.getElementById(elementId);
         if (element) {
-          const navbarHeight = 120; // Account for fixed navbar height
+          const navbarHeight = 60; // Account for fixed navbar height
           const elementPosition = element.offsetTop - navbarHeight;
           window.scrollTo({
             top: elementPosition,

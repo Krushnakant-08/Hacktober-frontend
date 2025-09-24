@@ -138,7 +138,7 @@ const Footer = () => {
 
           <div className="text-center md:text-right">
             <p className="text-purple-200/60 font-mono text-sm">
-              © 2025 Hacktoberfest. Made with 💜 by PCCoE ACM
+              © 2025 Hacktoberfest. Made with 💜 by SY WebMasters
             </p>
             <p className="text-purple-200/40 font-mono text-xs mt-1">
               Open Source • Community Driven • Innovation Focused
