@@ -27,7 +27,6 @@ function App() {
             {/* <div id="about">
               <About />
             </div> */}
-            
           </div>
         } />
         <Route path="/projects" element={<ProjectsPage />} />

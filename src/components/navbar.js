@@ -11,7 +11,7 @@ export default function Navbar() {
     { name: "Home", href: "#home", type: "scroll" },
     { name: "Schedule", href: "#schedule", type: "scroll" },
     { name: "Leaderboard", href: "/leaderboard", type: "route" },
-    { name: "About", href: "/about", type: "route" },
+    { name: "About", href: "#about", type: "scroll" },
     { name: "Contact", href: "#contact", type: "scroll" },
   ];
 
