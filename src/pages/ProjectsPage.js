@@ -87,13 +87,13 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full">
       {/* Background Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ pointerEvents: 'none' }} />
       {/* Gradient overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0D0C1D] via-transparent to-transparent pointer-events-none z-0" />
       {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col items-center w-full pt-32 pb-8">
+      <div className="relative z-10 flex flex-col items-center w-full pt-32 pb-8" data-scroll-section>
         <h2 className="projects-page-title mb-8 text-4xl font-bold text-purple-200">
           Projects to contribute
         </h2>
