@@ -8,11 +8,11 @@ export default function Navbar() {
 
   // Navigation links array - used for both desktop and mobile menus
   const navigationLinks = [
-    { name: "Home", href: "#hero", type: "scroll" },
+    { name: "Home", href: "#home", type: "scroll" },
     { name: "Schedule", href: "#schedule", type: "scroll" },
     { name: "Leaderboard", href: "/leaderboard", type: "route" },
-    { name: "About", href: "/about", type: "route" },
-    { name: "Contact", href: "/contact", type: "route" },
+    { name: "About", href: "#about", type: "scroll" },
+    { name: "Contact", href: "#contact", type: "scroll" },
   ];
 
   const toggleMobileMenu = () => {
@@ -29,7 +29,12 @@ export default function Navbar() {
           const elementId = link.href.substring(1); // Remove the # from href
           const element = document.getElementById(elementId);
           if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+            const navbarHeight = 60; // Account for fixed navbar height
+            const elementPosition = element.offsetTop - navbarHeight;
+            window.scrollTo({
+              top: elementPosition,
+              behavior: "smooth"
+            });
           }
         }, 100);
       } else {
@@ -37,7 +42,12 @@ export default function Navbar() {
         const elementId = link.href.substring(1); // Remove the # from href
         const element = document.getElementById(elementId);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+          const navbarHeight = 60; // Account for fixed navbar height
+          const elementPosition = element.offsetTop - navbarHeight;
+          window.scrollTo({
+            top: elementPosition,
+            behavior: "smooth"
+          });
         }
       }
     } else {
@@ -50,7 +60,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 w-full h-auto md:h-[110px] z-50 backdrop-blur-md bg-white/4 border-b border-purple-600/60 flex items-center justify-between px-4 sm:px-6 sm:h-30 md:px-12 lg:px-20 py-6"
+        className="fixed top-0 left-0 w-full h-auto md:h-[100px] z-50 backdrop-blur-md bg-white/4 border-b border-purple-600/60 flex items-center justify-between px-4 sm:px-6 sm:h-30 md:px-12 lg:px-20 py-6"
         style={{
           boxShadow: "0 4px 6px -1px rgba(180, 0, 255, 0.1), 0 2px 4px -1px rgba(180, 0, 255, 0.06)"
         }}
@@ -58,7 +68,7 @@ export default function Navbar() {
         {/* Left Side: Logo + Title */}
         <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => handleNavigation({ href: "#hero", type: "scroll" })}>
           <img
-            src="/assests/ACM.png"
+            src="/assets/ACM.png"
             alt="ACM Logo"
             className="h-12 sm:h-16 md:h-20 w-auto object-contain"
           />
