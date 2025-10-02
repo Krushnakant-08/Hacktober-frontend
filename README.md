@@ -1,1 +1,2 @@
-Hacktober acm sy 2025
+Hacktoberfest 2025 by acm 
+this project is made by sy web team
