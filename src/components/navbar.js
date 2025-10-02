@@ -68,7 +68,7 @@ export default function Navbar() {
         {/* Left Side: Logo + Title */}
         <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => handleNavigation({ href: "#hero", type: "scroll" })}>
           <img
-            src="/assests/ACM.png"
+            src="/assets/ACM.png"
             alt="ACM Logo"
             className="h-12 sm:h-16 md:h-20 w-auto object-contain"
           />
