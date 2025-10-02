@@ -38,6 +38,50 @@ function App() {
       } catch (e) {
         // ignore
       }
+      // Snap route wrapper after navigation to ensure precise final position
+      try {
+  // debug logging removed
+        const path = location.pathname.replace(/\//, '') || 'home';
+        const routeId = `route-${path}`;
+        const el = document.getElementById(routeId);
+        const navH = document.querySelector('nav')?.offsetHeight || 60;
+          if (el) {
+          const elH = el.offsetHeight || el.getBoundingClientRect().height || 0;
+          const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
+          const availableH = Math.max(0, viewportH - navH);
+          let targetY;
+          if (elH <= availableH) {
+            const centerOffset = Math.floor((availableH - elH) / 2);
+            targetY = Math.max(0, Math.floor(el.offsetTop - navH - centerOffset));
+          } else {
+            targetY = Math.max(0, Math.floor(el.offsetTop - navH));
+          }
+          
+          // initial snap shortly after render
+          setTimeout(() => {
+            try {
+              if (window && window.loco && typeof window.loco.scrollTo === 'function') {
+                window.loco.scrollTo(targetY, { duration: 0 });
+                setTimeout(() => { try { window.loco.update(); } catch (e) {} }, 30);
+              } else {
+                window.scrollTo({ top: targetY, behavior: 'auto' });
+              }
+            } catch (e) {}
+          }, 80);
+
+          // second snap in case layouts shift later (images/canvases/animations)
+          setTimeout(() => {
+            try {
+              if (window && window.loco && typeof window.loco.scrollTo === 'function') {
+                window.loco.scrollTo(targetY, { duration: 0 });
+                setTimeout(() => { try { window.loco.update(); } catch (e) {} }, 30);
+              } else {
+                window.scrollTo({ top: targetY, behavior: 'auto' });
+              }
+            } catch (e) {}
+          }, 330);
+        }
+      } catch (e) {}
     }, [location]);
 
     return null;
@@ -48,7 +92,7 @@ function App() {
       <RouteListener />
       <Navbar />
       {/* Locomotive requires a scroll container element with data-scroll-container */}
-  <div data-scroll-container ref={scrollRef}>
+  <div data-scroll-container ref={scrollRef} className="page-with-footer">
         <Routes>
           <Route
             path="/"
@@ -64,27 +108,29 @@ function App() {
                     <Schedule />
                   </FadeInSection>
                 </div>
-                <div id="about" data-scroll-section>
+                <div id="about" data-scroll-section className="anchor-offset">
                   <FadeInSection className="py-12">
                     <About />
                   </FadeInSection>
                 </div>
-                <div id="contact" data-scroll-section>
+                <div id="contact" data-scroll-section className="anchor-offset">
                   <FadeInSection className="py-12">
                     <ContactPage />
                   </FadeInSection>
                 </div>
-                <Footer />
               </div>
             }
           />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/fade-demo" element={<FadeInDemo />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/projects" element={<div data-scroll-section id="route-projects" className="w-full"><ProjectsPage /></div>} />
+          <Route path="/fade-demo" element={<div data-scroll-section id="route-fade-demo" className="w-full"><FadeInDemo /></div>} />
+          <Route path="/schedule" element={<div data-scroll-section id="route-schedule" className="w-full"><Schedule /></div>} />
+          <Route path="/contact" element={<div data-scroll-section id="route-contact" className="w-full"><ContactPage /></div>} />
+          <Route path="/about" element={<div data-scroll-section id="route-about" className="w-full"><About /></div>} />
+          <Route path="/leaderboard" element={<div data-scroll-section id="route-leaderboard" className="w-full"><Leaderboard /></div>} />
         </Routes>
+        {/* spacer to reserve visual space inside the scroll container so footer doesn't overlap content */}
+  <div aria-hidden="true" className="w-full h-12 md:h-16 lg:h-20" />
+        <Footer />
       </div>
     </Router>
   );

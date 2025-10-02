@@ -26,8 +26,8 @@ const ContactPage = () => {
   };
 
   return (
-  <div className="min-h-screen bg-[#0D0C1D] pt-32 pb-4 md:pb-8 px-4 md:px-8 lg:px-16 relative z-10">
-  <div className="flex flex-col md:flex-row justify-center items-stretch gap-0 py-4 md:py-8 bg-[#22103a] rounded-2xl shadow-lg max-w-4xl my-4 md:my-8 mx-auto">
+  <div className="bg-[#0D0C1D] pt-12 pb-6 md:pb-8 px-4 md:px-8 lg:px-16 relative z-10">
+  <div className="flex flex-col md:flex-row justify-center items-stretch gap-0 py-3 md:py-6 bg-[#22103a] rounded-2xl shadow-lg max-w-4xl my-2 md:my-4 mx-auto">
       {/* Left Side: Info Box */}
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-md bg-transparent p-4 md:p-8 min-h-[250px] md:min-h-[350px] flex flex-col justify-center">

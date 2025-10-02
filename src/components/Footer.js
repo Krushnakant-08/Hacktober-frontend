@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Footer = () => {
+  useEffect(() => {
+    // Single delayed update to allow any late layout work to finish,
+    // then refresh locomotive and ScrollTrigger once.
+    const t = setTimeout(() => {
+      try { if (window && window.loco && typeof window.loco.update === 'function') window.loco.update(); } catch (e) {}
+      try { if (window && window.ScrollTrigger && typeof window.ScrollTrigger.refresh === 'function') window.ScrollTrigger.refresh(); } catch (e) {}
+      try { window.dispatchEvent(new Event('scroll')); } catch (e) {}
+    }, 250);
+
+    return () => clearTimeout(t);
+  }, []);
+
   return (
-    <footer className="relative bg-[#0D0C1D] border-t border-purple-500/20 pt-16 pb-8 overflow-hidden">
+  <footer data-scroll-section className="relative z-40 bg-[#0D0C1D] border-t border-purple-500/20 pt-8 pb-6 overflow-hidden">
       
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           
           {/* Brand Section */}
           <div className="lg:col-span-2">
@@ -121,7 +133,7 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent mb-8"></div>
+  <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent mb-4"></div>
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center">

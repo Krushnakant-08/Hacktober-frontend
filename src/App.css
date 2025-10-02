@@ -204,6 +204,19 @@ img {
   width: 100%;
 }
 
+/* Ensure pages leave space for the footer so content isn't overlapped */
+.page-with-footer {
+  padding-bottom: 0; /* spacing handled by an explicit spacer element */
+}
+
+/* anchors: offset targets so fixed navbar doesn't cover sections */
+.anchor-offset {
+  /* adjust this if navbar height changes */
+  padding-top: 6rem; /* space above content so it sits below navbar */
+  margin-top: -6rem; /* pull layout back so visual flow is unchanged */
+  scroll-margin-top: 6rem; /* for native scroll/anchor behavior */
+}
+
 @media (max-width: 1200px) {
   .projects-list {
     grid-template-columns: repeat(3, 1fr);

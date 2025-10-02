@@ -93,8 +93,11 @@ export default function ProjectsPage() {
       {/* Gradient overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0D0C1D] via-transparent to-transparent pointer-events-none z-0" />
       {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col items-center w-full pt-32 pb-8" data-scroll-section>
-        <h2 className="projects-page-title mb-8 text-4xl font-bold text-purple-200">
+        <div className="relative z-10 flex flex-col items-center w-full pt-32 pb-8" data-scroll-section>
+        <h2 className="text-3xl md:text-5xl font-mono font-bold text-purple-400 mb-3"
+            style={{
+              textShadow: "0 0 8px rgba(180,0,255,0.6), 0 0 15px rgba(180,0,255,0.4)"
+            }}>
           Projects to contribute
         </h2>
   <div className="projects-list w-full px-1 py-8" style={{paddingLeft: '4rem', paddingRight: '3rem', margin: '0 auto'}}>
