@@ -72,7 +72,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#home"
+                  href="#"
                   className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
                 >
                   Home
@@ -92,6 +92,14 @@ const Footer = () => {
                   className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
                 >
                   Projects
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/gallery"
+                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
+                >
+                  Gallery
                 </a>
               </li>
               <li>
