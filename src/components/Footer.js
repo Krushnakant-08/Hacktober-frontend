@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <img
-                src="/assests/ACM.png"
+                src="/assets/ACM.png"
                 alt="ACM Logo"
                 className="h-12 w-auto object-contain"
               />
@@ -34,20 +34,27 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="mailto:contact.hacktober@pccoepune.org"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
+                aria-label="Email us"
               >
                 <span className="text-lg">📧</span>
               </a>
               <a
-                href="#"
+                href="https://github.com/pccoe-acm"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
+                aria-label="Visit our GitHub"
               >
                 <span className="text-lg">🐱</span>
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/pccoe-acm"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
+                aria-label="Visit our LinkedIn"
               >
                 <span className="text-lg">🔗</span>
               </a>
@@ -127,7 +134,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-4 mb-4 md:mb-0">
             <img
-              src="/assests/CESA_WHITE.png"
+              src="/assets/CESA_WHITE.png"
               alt="CESA Logo"
               className="h-8 w-auto opacity-80"
             />

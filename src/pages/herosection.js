@@ -156,7 +156,7 @@ export default function HeroSection() {
       {/* CESA Logo at Bottom - Behind the buttons */}
       <div className="absolute bottom-1 w-full flex justify-center z-5">
         <img 
-          src="/assests/CESA_WHITE.png" 
+          src="/assets/CESA_WHITE.png" 
           alt="CESA Logo" 
           className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[255px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
           style={{
