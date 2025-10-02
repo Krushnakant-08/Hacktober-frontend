@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { events, getEventTypeColor } from '../data/events';
 import EventCard from '../components/EventCard';
 import MobileEventCard from '../components/MobileEventCard';
+import useEventCards from '../hooks/useEventCards';
 
 function Schedule() {
   const eventsList = events;
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1180);
+
+  useEventCards();
 
   useEffect(() => {
     const checkScreenSize = () => {

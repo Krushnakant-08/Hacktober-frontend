@@ -18,7 +18,6 @@ const ContactPage = () => {
     setIsLoading(true);
     
     setTimeout(() => {
-      console.log('Form submitted:', formData);
       setIsLoading(false);
       setIsSubmitted(true);
       setFormData({ name: '', email: '', message: '' });

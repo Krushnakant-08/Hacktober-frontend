@@ -4,7 +4,7 @@ function MobileEventCard({ event, index, getEventTypeColor, isLast }) {
   return (
     <div className="relative w-3/4 mx-auto">
       {/* Event Card */}
-      <div className="relative group cursor-pointer transform transition-all duration-300 hover:scale-105">
+  <div className="relative group cursor-pointer transform transition-all duration-300 event-anim hover:scale-105">
         {/* Card Glow Effect */}
         <div className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
         

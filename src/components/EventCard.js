@@ -12,7 +12,7 @@ function EventCard({ event, index, getEventTypeColor }) {
 
       {/* Event Card */}
       <div className={`w-full max-w-xl ${index % 2 === 0 ? 'pr-16' : 'pl-16'}`}>
-        <div className={`relative group cursor-pointer transform transition-all duration-300 hover:scale-105 ${index % 2 === 0 ? 'hover:translate-x-2' : 'hover:-translate-x-2'}`}>
+        <div className={`relative group cursor-pointer transform transition-all duration-300 event-anim ${index % 2 === 0 ? 'hover:translate-x-2' : 'hover:-translate-x-2'}`}>
           {/* Card Glow Effect */}
           <div className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} rounded-xl blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
           
