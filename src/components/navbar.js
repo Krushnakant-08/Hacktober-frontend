@@ -10,8 +10,9 @@ export default function Navbar() {
   const navigationLinks = [
     { name: "Home", href: "#home", type: "scroll" },
     { name: "Schedule", href: "#schedule", type: "scroll" },
-    { name: "Leaderboard", href: "/leaderboard", type: "route" },
     { name: "About", href: "#about", type: "scroll" },
+    { name: "Gallery", href: "/gallery", type: "route" },
+    { name: "Leaderboard", href: "/leaderboard", type: "route" },
     { name: "Contact", href: "#contact", type: "scroll" },
   ];
 

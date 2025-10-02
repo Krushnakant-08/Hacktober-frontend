@@ -96,6 +96,14 @@ const Footer = () => {
               </li>
               <li>
                 <a
+                  href="/gallery"
+                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
+                >
+                  Gallery
+                </a>
+              </li>
+              <li>
+                <a
                   href="#contact"
                   className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
                 >

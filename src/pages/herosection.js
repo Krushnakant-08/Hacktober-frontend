@@ -145,8 +145,9 @@ export default function HeroSection() {
                   boxShadow:
                     "0 0 10px rgba(180,0,255,0.6), inset 0 0 10px rgba(180,0,255,0.6)",
                 }}
+                onClick={() => Navigate('/gallery')}
               >
-                Register Now
+                View Gallery
               </button>
             </div>
           </div>
