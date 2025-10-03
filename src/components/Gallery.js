@@ -1,10 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   
-  // Gallery images array - add your images here
-  const galleryImages = [];
+  // Define multiple images per event here (filenames inside /public/assets/gallery)
+  const eventImageSets = [
+    {
+      eventId: 'gamedev',
+      title: 'GameDev Workshop',
+      description: 'Highlights from our hands-on game development session.',
+      altPrefix: 'GameDev workshop photo',
+      files: [
+        'gamedev-1.jpeg',
+        'gamedev-2.jpeg',
+        'gamedev-3.jpeg'
+      ]
+    },
+    {
+      eventId: 'github-session',
+      title: 'GitHub Session',
+      description: 'Learning Git and GitHub workflows for open-source contributions.',
+      altPrefix: 'GitHub session photo',
+      files: [
+        'github-session-1.jpg',
+        'github-session-2.jpg'
+        
+      ]
+    },
+    {
+      eventId: 'hacktopia',
+      title: 'Hacktopia',
+      description: 'Moments from the Hacktopia meetup.',
+      altPrefix: 'Hacktopia event photo',
+      files: [
+        'hacktopia-1.jpeg',
+        'hacktopia-2.jpeg',
+        'hacktopia-3.jpeg'
+      ]
+    },
+    {
+      eventId: 'linkedin',
+      title: 'LinkedIn Session',
+      description: 'Building standout developer profiles on LinkedIn.',
+      altPrefix: 'LinkedIn session photo',
+      files: [
+        'linkedin-1.jpg',
+        'linkedin-2.jpg',
+        'linkedin-3.jpg'
+      ]
+    }
+  ];
+
+  // Flatten into the structure used by the grid
+  const galleryImages = eventImageSets.flatMap((event) =>
+    event.files.map((filename, index) => ({
+      id: `${event.eventId}-${index + 1}`,
+      src: `/assets/gallery/${filename}`,
+      alt: `${event.altPrefix} ${index + 1}`,
+      title: event.title,
+      description: event.description
+    }))
+  );
 
   const openModal = (image) => {
     setSelectedImage(image);
@@ -13,6 +69,21 @@ const Gallery = () => {
   const closeModal = () => {
     setSelectedImage(null);
   };
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+    if (selectedImage) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedImage]);
 
   return (
     <div className="min-h-screen bg-[#0D0C1D] pt-32 pb-16 px-4 relative z-10">
@@ -50,7 +121,7 @@ const Gallery = () => {
                 />
                 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent  group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-white font-bold text-lg mb-1">{image.title}</h3>
                     <p className="text-purple-200 text-sm">{image.description}</p>
@@ -77,31 +148,28 @@ const Gallery = () => {
         </div>
 
         {/* Upload Instructions */}
-        <div className="bg-black/60 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 text-center">
-          <h3 className="text-3xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text mb-4">
-            Add Your Images
-          </h3>
-          <p className="text-purple-200 mb-6 font-mono">
-            To add your Hacktoberfest 2024 images, place them in the <code className="bg-purple-500/20 px-2 py-1 rounded">/public/assets/gallery/</code> folder 
-            and update the gallery data.
-          </p>
-          <div className="text-purple-300 text-sm font-mono">
-            <p>📁 Supported formats: JPG, PNG, WebP</p>
-            <p>📐 Recommended size: 800x600px or 4:3 aspect ratio</p>
-          </div>
-        </div>
+       
       </div>
 
       {/* Modal for enlarged image view */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/90 backdrop-blur-md z-[70] flex items-center justify-center p-4"
           onClick={closeModal}
         >
-          <div className="relative max-w-4xl max-h-[90vh] w-full">
+          <div className="relative max-w-4xl max-h-[90vh] w-full" onClick={(e) => e.stopPropagation()}>
+            {/* Back button */}
+            <button
+              aria-label="Back"
+              className="absolute top-2 left-2 md:top-4 md:left-4 z-10 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-black/60 border border-white/20 text-white hover:bg-black/80 hover:border-white/40 transition-colors text-sm md:text-base"
+              onClick={closeModal}
+            >
+              ← Back
+            </button>
             {/* Close button */}
             <button
-              className="absolute -top-12 right-0 text-white text-4xl hover:text-purple-400 transition-colors z-10"
+              aria-label="Close"
+              className="absolute top-2 right-2 md:top-4 md:right-4 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-black/60 border border-white/20 text-white hover:bg-black/80 hover:border-white/40 flex items-center justify-center text-2xl leading-none"
               onClick={closeModal}
             >
               ×
@@ -112,7 +180,7 @@ const Gallery = () => {
               <img
                 src={selectedImage.src}
                 alt={selectedImage.alt}
-                className="w-full max-h-[70vh] object-contain"
+                className="w-full max-h-[55vh] object-contain"
               />
               
               {/* Image info */}
