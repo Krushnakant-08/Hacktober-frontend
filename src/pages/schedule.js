@@ -9,6 +9,13 @@ function Schedule() {
   const eventsList = events;
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1180);
 
+  const handleRegisterClick = () => {
+    navigate('/events');
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 1180);
@@ -83,7 +90,7 @@ function Schedule() {
                   boxShadow:
                     "0 0 10px rgba(180,0,255,0.35), 0 0 0 2px rgba(180,0,255,0.4)",
                 }}
-                onClick={() => navigate('/events')}
+                onClick={handleRegisterClick}
               >
                 Register Now
               </button>
