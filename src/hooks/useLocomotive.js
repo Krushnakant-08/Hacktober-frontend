@@ -45,12 +45,11 @@ function useLocomotiveImpl(options = {}, externalRef) {
 		const imgLoadHandler = () => loco.update();
 		imgs.forEach((i) => i.addEventListener("load", imgLoadHandler));
 
-		return () => {
-			window.removeEventListener("resize", update);
-			window.removeEventListener("load", update);
-			imgs.forEach((i) => i.removeEventListener("load", imgLoadHandler));
-			console.log("[useLocomotive] destroy");
-			if (loco) loco.destroy();
+			return () => {
+				window.removeEventListener("resize", update);
+				window.removeEventListener("load", update);
+				imgs.forEach((i) => i.removeEventListener("load", imgLoadHandler));
+				if (loco) loco.destroy();
 			try {
 				if (window && window.loco === loco) window.loco = null;
 			} catch (e) {

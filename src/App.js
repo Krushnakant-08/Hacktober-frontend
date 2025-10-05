@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Leaderboard from "./pages/Leaderboard";
 import useLocomotive from "./hooks/useLocomotive";
 import useFadeIn from "./hooks/useFadeIn";
+import scrollToAnchor from './utils/anchorScroll';
 import FadeInSection from "./components/FadeInSection";
 import FadeInDemo from "./pages/FadeInDemo";
 import { useEffect } from "react";
@@ -39,7 +40,32 @@ function App() {
       } catch (e) {
         // ignore
       }
-      // Snap route wrapper after navigation to ensure precise final position
+      // If a navbar-initiated navigation is in progress, defer snapping here.
+      if (typeof window !== 'undefined' && window.__navInProgress) return;
+
+      // If navigation passed a scroll target in state (e.g. clicking an anchor
+      // from another route), perform the authoritative snap to that element.
+      const requested = location && location.state && location.state.scrollTo;
+      if (requested && location.pathname === '/') {
+        const elementId = requested;
+        let attempts = 0;
+        const maxAttempts = 20;
+        const trySnap = () => {
+          attempts += 1;
+          const el = document.getElementById(elementId);
+          if (el) {
+            try { if (typeof window !== 'undefined') window.__navInProgress = true; } catch (e) {}
+            scrollToAnchor(el, { duration: 0 }).catch(() => {});
+            try { window.history.replaceState({}, document.title); } catch (e) {}
+            return;
+          }
+          if (attempts < maxAttempts) setTimeout(trySnap, 150);
+          else try { window.history.replaceState({}, document.title); } catch (e) {}
+        };
+        trySnap();
+        return;
+      }
+
       try {
   // debug logging removed
         const path = location.pathname.replace(/\//, '') || 'home';

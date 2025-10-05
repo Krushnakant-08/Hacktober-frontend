@@ -35,7 +35,6 @@ const ContactPage = () => {
         _template: 'table'
       };
       
-      console.log('Sending to endpoint:', endpoint); // Debug log
       
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -47,10 +46,9 @@ const ContactPage = () => {
         body: JSON.stringify(payload)
       });
       
-      console.log('Response status:', res.status); // Debug log
       
       const data = await res.json();
-      console.log('Response data:', data); // Debug log
+  // removed debug logs
       
       // More lenient success check
       if (res.ok && (data.success === true || data.success === 'true' || data.message === 'Form submitted successfully')) {
@@ -61,7 +59,6 @@ const ContactPage = () => {
         throw new Error(data.message || 'Failed to submit form');
       }
     } catch (err) {
-      console.error('Form submission error:', err);
       if (err.message && err.message.includes('needs Activation')) {
         setError('Our contact form is being activated. Please try again in a few minutes.');
       } else {

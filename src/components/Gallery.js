@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// Installation (run once):
-//   npm install react-slick slick-carousel
-// Import slick styles (either here or in a global CSS like src/index.css or src/App.css):
-//   import "slick-carousel/slick/slick.css";
-//   import "slick-carousel/slick/slick-theme.css";
+// Uses react-slick for the carousel; ensure "slick-carousel" styles are imported globally
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
