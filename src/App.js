@@ -30,7 +30,6 @@ function App() {
             <div id="contact">
               <ContactPage />
             </div>
-            <Footer />
           </div>
         } />
         <Route path="/projects" element={<ProjectsPage />} />
@@ -40,6 +39,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
