@@ -1,8 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaHeart } from 'react-icons/fa';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    navigate('/');
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
     <footer className="relative bg-[#0D0C1D] border-t border-purple-500/20 pt-16 pb-8 overflow-hidden">
       
@@ -73,12 +82,12 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link
-                  to="/"
-                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
+                <button
+                  onClick={handleHomeClick}
+                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm cursor-pointer"
                 >
                   Home
-                </Link>
+                </button>
               </li>
               <li>
                 <a
