@@ -1,4 +1,12 @@
 import React, { useState, useEffect } from 'react';
+// Installation (run once):
+//   npm install react-slick slick-carousel
+// Import slick styles (either here or in a global CSS like src/index.css or src/App.css):
+//   import "slick-carousel/slick/slick.css";
+//   import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -51,16 +59,63 @@ const Gallery = () => {
     }
   ];
 
-  // Flatten into the structure used by the grid
-  const galleryImages = eventImageSets.flatMap((event) =>
-    event.files.map((filename, index) => ({
-      id: `${event.eventId}-${index + 1}`,
-      src: `/assets/gallery/${filename}`,
-      alt: `${event.altPrefix} ${index + 1}`,
-      title: event.title,
-      description: event.description
-    }))
-  );
+  // Custom arrows for react-slick
+  const PrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <button
+        type="button"
+        aria-label="Previous image"
+        className={`${className || ''} !left-3 !z-20`}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      >
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white hover:bg-black/80 transition-colors">
+          {/* Left chevron */}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+      </button>
+    );
+  };
+
+  const NextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <button
+        type="button"
+        aria-label="Next image"
+        className={`${className || ''} !right-3 !z-20`}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      >
+        <span className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white hover:bg-black/80 transition-colors">
+          {/* Right chevron */}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+      </button>
+    );
+  };
+
+  // Carousel settings for react-slick
+  const sliderSettings = {
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    accessibility: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />
+  };
 
   const openModal = (image) => {
     setSelectedImage(image);
@@ -105,37 +160,51 @@ const Gallery = () => {
           <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full shadow-lg shadow-purple-500/50"></div>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {galleryImages.length > 0 ? (
-            galleryImages.map((image, index) => (
-              <div
-                key={image.id}
-                className="group relative overflow-hidden rounded-xl bg-black/40 backdrop-blur-sm border border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 cursor-pointer transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/20"
-                onClick={() => openModal(image)}
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full aspect-[4/3] object-cover"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent  group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-white font-bold text-lg mb-1">{image.title}</h3>
-                    <p className="text-purple-200 text-sm">{image.description}</p>
+        {/* Per-Event Cards with Carousels */}
+        <div className="grid grid-cols-1 gap-8 mb-12">
+          {eventImageSets && eventImageSets.length > 0 ? (
+            eventImageSets.map((event) => {
+              const images = event.files.map((filename, index) => ({
+                id: `${event.eventId}-${index + 1}`,
+                src: `/assets/gallery/${filename}`,
+                alt: `${event.altPrefix} ${index + 1}`,
+                title: event.title,
+                description: event.description
+              }));
+              return (
+                <section
+                  key={event.eventId}
+                  className="relative overflow-hidden rounded-2xl bg-black/40 backdrop-blur-sm border border-purple-500/20 hover:border-purple-400/40 transition-colors"
+                  aria-label={`${event.title} gallery`}
+                >
+                  <header className="px-5 pt-5">
+                    <h2 className="text-2xl font-bold text-purple-300 mb-1">{event.title}</h2>
+                    <p className="text-purple-200/90 text-sm mb-4">{event.description}</p>
+                  </header>
+                  <div className="relative">
+                    <Slider {...sliderSettings}>
+                      {images.map((image) => (
+                        <div key={image.id} className="px-5 pb-6">
+                          <button
+                            type="button"
+                            className="block group relative w-full overflow-hidden rounded-xl border border-purple-500/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            onClick={() => openModal(image)}
+                            aria-label={`Open ${image.title} image in fullscreen`}
+                          >
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              className="w-full aspect-[16/9] object-cover"
+                            />
+                            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          </button>
+                        </div>
+                      ))}
+                    </Slider>
                   </div>
-                </div>
-                
-                {/* View Icon */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 bg-purple-500/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
-                    <span className="text-lg">👁️</span>
-                  </div>
-                </div>
-              </div>
-            ))
+                </section>
+              );
+            })
           ) : (
             <div className="col-span-full flex flex-col items-center justify-center py-20">
               <div className="text-8xl mb-6 text-purple-400/60">📷</div>

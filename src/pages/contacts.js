@@ -4,6 +4,7 @@ const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,17 +14,62 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // Using FormSubmit (no backend required) via AJAX to avoid redirect.
+  const getFormsubmitAjaxEndpoint = () => {
+    const base = process.env.REACT_APP_FORMSUBMIT_ENDPOINT || 'https://formsubmit.co/parth.joshi23@pccoepune.org';
+    // Ensure we hit the /ajax/ endpoint to receive JSON and prevent redirect
+    return base.replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
+    setError(''); // Clear any previous errors
+    try {
+      const endpoint = getFormsubmitAjaxEndpoint();
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        _captcha: 'false',
+        _template: 'table'
+      };
+      
+      console.log('Sending to endpoint:', endpoint); // Debug log
+      
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        mode: 'cors', // Explicitly set CORS mode
+        body: JSON.stringify(payload)
+      });
+      
+      console.log('Response status:', res.status); // Debug log
+      
+      const data = await res.json();
+      console.log('Response data:', data); // Debug log
+      
+      // More lenient success check
+      if (res.ok && (data.success === true || data.success === 'true' || data.message === 'Form submitted successfully')) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 4000);
+      } else {
+        throw new Error(data.message || 'Failed to submit form');
+      }
+    } catch (err) {
+      console.error('Form submission error:', err);
+      if (err.message && err.message.includes('needs Activation')) {
+        setError('Our contact form is being activated. Please try again in a few minutes.');
+      } else {
+        setError(err.message || 'Failed to send message. Please try again later.');
+      }
+    } finally {
       setIsLoading(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 4000); // Hide message after 4 seconds
-    }, 2000);
+    }
   };
 
   return (
@@ -35,8 +81,8 @@ const ContactPage = () => {
     <h1 className="text-2xl md:text-3xl font-bold text-center text-[#e0aaff] mb-3 md:mb-4 drop-shadow-[0_0_16px_#9d00ff]">Get in Touch</h1>
     <p className="text-[#e0aaff] text-center mb-4 md:mb-6 text-sm md:text-base">We'd love to hear from you. Whether you have a question, a suggestion, or just want to say hi, drop us a line!</p>
     <div className="text-center space-y-2">
-  <p className="text-[#a259f7] font-semibold">contact.hactober@pccoepune.org</p>
-  <p className="text-[#a259f7] font-semibold">98989-----</p>
+  <p className="text-[#a259f7] font-semibold">acm@pccoepune.org</p>
+  
     </div>
   </div>
       </div>
@@ -99,6 +145,11 @@ const ContactPage = () => {
           {isSubmitted && (
             <p className="mt-4 text-center text-green-300 font-semibold drop-shadow-[0_0_10px_rgba(0,255,0,0.7)]">
               Thank you! Your message has been sent.
+            </p>
+          )}
+          {error && (
+            <p className="mt-4 text-center text-red-400 font-semibold">
+              {error}
             </p>
           )}
         </div>
