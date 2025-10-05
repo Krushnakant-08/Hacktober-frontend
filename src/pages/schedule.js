@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { events, getEventTypeColor } from '../data/events';
 import EventCard from '../components/EventCard';
+import { useNavigate } from "react-router-dom";
 import MobileEventCard from '../components/MobileEventCard';
 
 function Schedule() {
+  const navigate = useNavigate();
   const eventsList = events;
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1180);
 
@@ -74,9 +76,17 @@ function Schedule() {
             <p className="text-purple-200 mb-6 font-mono">
               Don't miss out on these amazing events. Mark your calendar!
             </p>
-            <button className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 transform hover:scale-105 transition-all duration-300 font-mono">
-              Register Now
-            </button>
+            <button
+                aria-label="Register Now"
+                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-300 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.45)] transform hover:scale-[1.03] transition-all duration-300"
+                style={{
+                  boxShadow:
+                    "0 0 10px rgba(180,0,255,0.35), 0 0 0 2px rgba(180,0,255,0.4)",
+                }}
+                onClick={() => navigate('/events')}
+              >
+                Register Now
+              </button>
           </div>
         </div>
       </div>
