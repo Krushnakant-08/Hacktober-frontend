@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaHeart } from 'react-icons/fa';
 
 const Footer = () => {
   useEffect(() => {
@@ -24,7 +26,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <img
-                src="/assests/ACM.png"
+                src="/assets/ACM.png"
                 alt="ACM Logo"
                 className="h-12 w-auto object-contain"
               />
@@ -46,22 +48,29 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="mailto:contact.acm@pccoepune.org"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
+                aria-label="Email us"
               >
-                <span className="text-lg">📧</span>
+                <FaEnvelope aria-hidden="true" />
               </a>
               <a
-                href="#"
+                href="https://github.com/pccoe-acm"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
+                aria-label="Visit our GitHub"
               >
-                <span className="text-lg">🐱</span>
+                <FaGithub aria-hidden="true" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/pccoe-acm"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
+                aria-label="Visit our LinkedIn"
               >
-                <span className="text-lg">🔗</span>
+                <FaLinkedin aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -76,32 +85,40 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="#home"
+                <Link
+                  to="/"
                   className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <a
-                  href="#schedule"
+                  href="/#schedule"
                   className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
                 >
                   Schedule
                 </a>
               </li>
               <li>
-                <a
-                  href="/projects"
+                <Link
+                  to="/projects"
                   className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
                 >
                   Projects
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/gallery"
+                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
+                >
+                  Gallery
+                </Link>
               </li>
               <li>
                 <a
-                  href="#contact"
+                  href="/#contact"
                   className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
                 >
                   Contact
@@ -119,14 +136,14 @@ const Footer = () => {
               Contact Info
             </h3>
             <ul className="space-y-3">
-              <li className="text-purple-200 font-mono text-sm">
-                <span className="text-purple-400">📧</span> contact.hacktober@pccoepune.org
+              <li className="text-purple-200 font-mono text-sm flex items-center gap-2">
+                <FaEnvelope className="text-purple-400" aria-hidden="true" />
+                <span>acm@pccoepune.org</span>
               </li>
-              <li className="text-purple-200 font-mono text-sm">
-                <span className="text-purple-400">📱</span> +91 98989-XXXXX
-              </li>
-              <li className="text-purple-200 font-mono text-sm">
-                <span className="text-purple-400">🏫</span> PCCoE, Pune
+              
+              <li className="text-purple-200 font-mono text-sm flex items-center gap-2">
+                <FaMapMarkerAlt className="text-purple-400" aria-hidden="true" />
+                <span>PCCoE, Pune</span>
               </li>
             </ul>
           </div>
@@ -139,7 +156,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-4 mb-4 md:mb-0">
             <img
-              src="/assests/CESA_WHITE.png"
+              src="/assets/CESA_WHITE.png"
               alt="CESA Logo"
               className="h-8 w-auto opacity-80"
             />
@@ -149,8 +166,10 @@ const Footer = () => {
           </div>
 
           <div className="text-center md:text-right">
-            <p className="text-purple-200/60 font-mono text-sm">
-              © 2025 Hacktoberfest. Made with 💜 by SY WebMasters
+            <p className="text-purple-200/60 font-mono text-sm flex items-center gap-2 justify-center md:justify-end">
+              <span>© 2025 ACM. Made with</span>
+              <FaHeart className="text-pink-400" aria-hidden="true" />
+              <span>by SY WebMasters</span>
             </p>
             <p className="text-purple-200/40 font-mono text-xs mt-1">
               Open Source • Community Driven • Innovation Focused

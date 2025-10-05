@@ -1,5 +1,18 @@
 import React from 'react';
 
+const getClubColorClasses = (club) => {
+  if (!club) return 'from-purple-500 to-pink-500';
+  const key = club.toLowerCase();
+  // ACM and ACM-W -> sky blue
+  if (key.includes('acmw') || key.includes('acm-w')) return 'from-sky-500 to-sky-400';
+  if (key.includes('acm')) return 'from-sky-500 to-sky-400';
+  // GDGC -> green to orange
+  if (key.includes('gdgc') || key.includes('gdg')) return 'from-green-500 to-orange-500';
+  // All Clubs -> keep amber to orange
+  if (key.includes('all')) return 'from-amber-500 to-orange-500';
+  return 'from-purple-500 to-pink-500';
+};
+
 function EventCard({ event, index, getEventTypeColor }) {
   return (
     <div className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
@@ -20,8 +33,16 @@ function EventCard({ event, index, getEventTypeColor }) {
           <div className="relative bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 shadow-2xl">
             {/* Card Header */}
             <div className="flex items-center justify-between mb-6">
-              <div className={`px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg`}>
-                {event.type.toUpperCase()}
+              <div className="flex items-center gap-3">
+                {event.club && (
+                  <div className={`relative inline-block rounded-xl p-[2px] bg-gradient-to-r ${getClubColorClasses(event.club)}`}>
+                    <div className="rounded-[10px] bg-black/80 border border-white/10 px-3 py-1">
+                      <div className="text-2xl md:text-3xl font-extrabold text-white">
+                        {event.club}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="text-purple-300 font-mono text-base">
                 {event.date}

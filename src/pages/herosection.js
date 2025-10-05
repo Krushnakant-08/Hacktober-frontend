@@ -10,24 +10,33 @@ export default function HeroSection() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d", { alpha: false });
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const setCanvasSize = () => {
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+    };
+    setCanvasSize();
 
     const particleCount = window.innerWidth < 768 ? 30 : 60;
     let particles = Array.from({ length: particleCount }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
       size: Math.random() * 2 + 1,
       speedY: Math.random() * 0.5 + 0.2,
     }));
 
+    let resizeTimeout;
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      particles.forEach(p => {
-        p.x = Math.random() * canvas.width;
-        p.y = Math.random() * canvas.height;
-      });
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        setCanvasSize();
+        particles.forEach(p => {
+          p.x = Math.random() * window.innerWidth;
+          p.y = Math.random() * window.innerHeight;
+        });
+      }, 100);
     };
 
     let animationFrameId;
@@ -37,34 +46,34 @@ export default function HeroSection() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = "#0D0C1D";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
-      const centerX = Math.floor(canvas.width / 2);
-      const centerY = Math.floor(canvas.height / 2);
-      const gridSize = canvas.width < 768 ? 60 : 40;
-      const maxLines = canvas.width < 768 ? Math.floor(canvas.width / gridSize) : Infinity;
+      const centerX = Math.floor(window.innerWidth / 2);
+      const centerY = Math.floor(window.innerHeight / 2);
+      const gridSize = window.innerWidth < 768 ? 60 : 40;
+      const maxLines = window.innerWidth < 768 ? Math.floor(window.innerWidth / gridSize) : Infinity;
       let lineCount = 0;
 
-      for (let x = 0; x < canvas.width; x += gridSize) {
+      for (let x = 0; x < window.innerWidth; x += gridSize) {
         if (lineCount >= maxLines) break;
         ctx.beginPath();
         ctx.strokeStyle = "rgba(180, 0, 255, 0.4)";
         ctx.lineWidth = 0.5;
         ctx.moveTo(centerX, centerY);
-        ctx.lineTo(x, canvas.height);
+        ctx.lineTo(x, window.innerHeight);
         ctx.stroke();
         lineCount++;
       }
 
       lineCount = 0;
 
-      for (let x = canvas.width; x > centerX; x -= gridSize) {
+      for (let x = window.innerWidth; x > centerX; x -= gridSize) {
         if (lineCount >= maxLines) break;
         ctx.beginPath();
         ctx.strokeStyle = "rgba(180, 0, 255, 0.4)";
         ctx.lineWidth = 0.5;
         ctx.moveTo(centerX, centerY);
-        ctx.lineTo(x, canvas.height);
+        ctx.lineTo(x, window.innerHeight);
         ctx.stroke();
         lineCount++;
       }
@@ -80,22 +89,31 @@ export default function HeroSection() {
         ctx.fill();
 
         p.y += p.speedY;
-        if (p.y > canvas.height) p.y = 0;
+        if (p.y > window.innerHeight) p.y = 0;
       });
     }
 
     animate();
 
     window.addEventListener('resize', resizeCanvas);
+    const onVisChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        animate();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisChange);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      document.removeEventListener('visibilitychange', onVisChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <section id="home" className="relative h-screen w-full overflow-hidden">
+    <section id="home" className="relative min-h-[100svh] w-full overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
       <div className="absolute inset-0 bg-gradient-to-t from-[#0D0C1D] via-transparent to-transparent pointer-events-none z-0" />
@@ -128,10 +146,11 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-8">
             <div className="p-3 sm:p-4">
               <button
-                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-400 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.9)] transform hover:scale-105 transition-all duration-300"
+                aria-label="Explore projects"
+                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-base sm:text-lg md:text-xl font-mono tracking-wide hover:shadow-[0_0_24px_rgba(180,0,255,0.7)] transform hover:scale-[1.03] transition-all duration-300 rounded-lg"
                 style={{
                   boxShadow:
-                    "0 0 10px rgba(180,0,255,0.6), inset 0 0 10px rgba(180,0,255,0.6)",
+                    "0 0 10px rgba(180,0,255,0.45)",
                 }}
                 onClick={() => Navigate('/projects')}
               >
@@ -140,23 +159,27 @@ export default function HeroSection() {
             </div>
             <div className="p-3 sm:p-4">
               <button
-                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-400 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.9)] transform hover:scale-105 transition-all duration-300"
+                aria-label="View gallery"
+                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-300 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.45)] transform hover:scale-[1.03] transition-all duration-300 rounded-lg"
                 style={{
                   boxShadow:
-                    "0 0 10px rgba(180,0,255,0.6), inset 0 0 10px rgba(180,0,255,0.6)",
+                    "0 0 10px rgba(180,0,255,0.35)",
                 }}
+                onClick={() => Navigate('/gallery')}
               >
-                Register Now
+                View Gallery
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      
       
       {/* CESA Logo at Bottom - Behind the buttons */}
-      <div className="absolute bottom-1 w-full flex justify-center z-5">
+      <div className="absolute -bottom-8 w-full flex justify-center z-0">
         <img 
-          src="/assests/CESA_WHITE.png" 
+          src="/assets/CESA_WHITE.png" 
           alt="CESA Logo" 
           className="max-w-[180px] sm:max-w-[250px] md:max-w-xs lg:max-w-[255px] h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 transform scale-110"
           style={{

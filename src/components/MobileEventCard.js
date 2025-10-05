@@ -1,5 +1,18 @@
 import React from 'react';
 
+const getClubColorClasses = (club) => {
+  if (!club) return 'from-purple-500 to-pink-500';
+  const key = club.toLowerCase();
+  // ACM and ACM-W -> sky blue
+  if (key.includes('acmw') || key.includes('acm-w')) return 'from-sky-500 to-sky-400';
+  if (key.includes('acm')) return 'from-sky-500 to-sky-400';
+  // GDGC -> green to orange
+  if (key.includes('gdgc') || key.includes('gdg')) return 'from-green-500 to-orange-500';
+  // All Clubs -> keep amber to orange
+  if (key.includes('all')) return 'from-amber-500 to-orange-500';
+  return 'from-purple-500 to-pink-500';
+};
+
 function MobileEventCard({ event, index, getEventTypeColor, isLast }) {
   return (
     <div className="relative w-3/4 mx-auto">
@@ -12,8 +25,16 @@ function MobileEventCard({ event, index, getEventTypeColor, isLast }) {
         <div className="relative bg-black/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 shadow-xl">
           {/* Card Header */}
           <div className="flex items-center justify-between mb-4">
-            <div className={`px-3 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg`}>
-              {event.type.toUpperCase()}
+            <div className="flex items-center gap-2">
+              {event.club && (
+                <div className={`relative inline-block rounded-lg p-[2px] bg-gradient-to-r ${getClubColorClasses(event.club)}`}>
+                  <div className="rounded-[8px] bg-black/80 border border-white/10 px-2.5 py-0.5">
+                    <div className="text-xl font-extrabold text-white">
+                      {event.club}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="text-purple-300 font-mono text-sm">
               {event.date}

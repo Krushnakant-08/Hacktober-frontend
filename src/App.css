@@ -88,6 +88,13 @@ html {
   }
 }
 
+/* Override default slick arrow icons since we use custom arrows */
+.slick-prev:before,
+.slick-next:before {
+  content: '' !important;
+  display: none !important;
+}
+
 /* Text shadow utility */
 .text-shadow {
   text-shadow: 0 0 8px rgba(180, 0, 255, 0.6), 0 0 15px rgba(180, 0, 255, 0.4);

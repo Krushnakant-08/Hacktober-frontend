@@ -15,6 +15,7 @@ import FadeInDemo from "./pages/FadeInDemo";
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLocation } from "react-router-dom";
+import Gallery from "./components/Gallery";
 
 
 function App() {
@@ -92,7 +93,7 @@ function App() {
       <RouteListener />
       <Navbar />
       {/* Locomotive requires a scroll container element with data-scroll-container */}
-  <div data-scroll-container ref={scrollRef} className="page-with-footer">
+      <div data-scroll-container ref={scrollRef} className="page-with-footer">
         <Routes>
           <Route
             path="/"
@@ -127,9 +128,10 @@ function App() {
           <Route path="/contact" element={<div data-scroll-section id="route-contact" className="w-full"><ContactPage /></div>} />
           <Route path="/about" element={<div data-scroll-section id="route-about" className="w-full"><About /></div>} />
           <Route path="/leaderboard" element={<div data-scroll-section id="route-leaderboard" className="w-full"><Leaderboard /></div>} />
+          <Route path="/gallery" element={<div data-scroll-section id="route-gallery" className="w-full"><Gallery /></div>} />
         </Routes>
         {/* spacer to reserve visual space inside the scroll container so footer doesn't overlap content */}
-  <div aria-hidden="true" className="w-full h-12 md:h-16 lg:h-20" />
+        <div aria-hidden="true" className="w-full h-12 md:h-16 lg:h-20" />
         <Footer />
       </div>
     </Router>

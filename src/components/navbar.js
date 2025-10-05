@@ -11,8 +11,9 @@ export default function Navbar() {
   const navigationLinks = [
     { name: "Home", href: "#home", type: "scroll" },
     { name: "Schedule", href: "#schedule", type: "scroll" },
-    { name: "Leaderboard", href: "/leaderboard", type: "route" },
     { name: "About", href: "#about", type: "scroll" },
+    { name: "Gallery", href: "/gallery", type: "route" },
+    { name: "Leaderboard", href: "/leaderboard", type: "route" },
     { name: "Contact", href: "#contact", type: "scroll" },
   ];
 
@@ -319,7 +320,7 @@ export default function Navbar() {
         {/* Left Side: Logo + Title */}
   <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => handleNavigation({ href: "#home", type: "scroll" })}>
           <img
-            src="/assests/ACM.png"
+            src="/assets/ACM.png"
             alt="ACM Logo"
             className="h-12 sm:h-16 md:h-20 w-auto object-contain"
           />
