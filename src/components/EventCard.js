@@ -1,16 +1,16 @@
 import React from 'react';
 
 const getClubColorClasses = (club) => {
-  if (!club) return 'from-purple-500 to-pink-500';
+  if (!club) return 'bg-purple-500';
   const key = club.toLowerCase();
   // ACM and ACM-W -> sky blue
-  if (key.includes('acmw') || key.includes('acm-w')) return 'from-sky-500 to-sky-400';
-  if (key.includes('acm')) return 'from-sky-500 to-sky-400';
-  // GDGC -> green to orange
-  if (key.includes('gdgc') || key.includes('gdg')) return 'from-green-500 to-orange-500';
-  // All Clubs -> keep amber to orange
-  if (key.includes('all')) return 'from-amber-500 to-orange-500';
-  return 'from-purple-500 to-pink-500';
+  if (key.includes('acmw') || key.includes('acm-w')) return 'bg-sky-500';
+  if (key.includes('acm')) return 'bg-sky-500';
+  // GDGC -> green
+  if (key.includes('gdgc') || key.includes('gdg')) return 'bg-green-500';
+  // All Clubs -> amber
+  if (key.includes('all')) return 'bg-amber-500';
+  return 'bg-purple-500';
 };
 
 function EventCard({ event, index, getEventTypeColor }) {
@@ -30,14 +30,14 @@ function EventCard({ event, index, getEventTypeColor }) {
           <div className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} rounded-xl blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
           
           {/* Main Card */}
-          <div className="relative bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 shadow-2xl">
+          <div className="relative bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 shadow-2xl shadow-amber-500/20">
             {/* Card Header */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 {event.club && (
-                  <div className={`relative inline-block rounded-xl p-[2px] bg-gradient-to-r ${getClubColorClasses(event.club)}`}>
-                    <div className="rounded-[10px] bg-black/80 border border-white/10 px-3 py-1">
-                      <div className="text-2xl md:text-3xl font-extrabold text-white">
+                  <div className={`relative inline-block rounded-xl p-[2px] ${getClubColorClasses(event.club)}`}>
+                    <div className="rounded-[10px] bg-black/80 border border-white/10 px-2 py-0.5">
+                      <div className="text-lg md:text-lg font-extrabold text-white">
                         {event.club}
                       </div>
                     </div>

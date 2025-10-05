@@ -147,10 +147,10 @@ export default function HeroSection() {
             <div className="p-3 sm:p-4">
               <button
                 aria-label="Explore projects"
-                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-base sm:text-lg md:text-xl font-mono tracking-wide hover:shadow-[0_0_24px_rgba(180,0,255,0.7)] transform hover:scale-[1.03] transition-all duration-300 rounded-lg"
+                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-300 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.45)] transform hover:scale-[1.03] transition-all duration-300"
                 style={{
                   boxShadow:
-                    "0 0 10px rgba(180,0,255,0.45)",
+                    "0 0 10px rgba(180,0,255,0.35), 0 0 0 2px rgba(180,0,255,0.4)",
                 }}
                 onClick={() => Navigate('/projects')}
               >
@@ -160,10 +160,10 @@ export default function HeroSection() {
             <div className="p-3 sm:p-4">
               <button
                 aria-label="View gallery"
-                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-300 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.45)] transform hover:scale-[1.03] transition-all duration-300 rounded-lg"
+                className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-300 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.45)] transform hover:scale-[1.03] transition-all duration-300"
                 style={{
                   boxShadow:
-                    "0 0 10px rgba(180,0,255,0.35)",
+                    "0 0 10px rgba(180,0,255,0.35), 0 0 0 2px rgba(180,0,255,0.4)",
                 }}
                 onClick={() => Navigate('/gallery')}
               >
