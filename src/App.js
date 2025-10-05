@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import About from "./pages/About";
 import Leaderboard from "./pages/Leaderboard";
 import Gallery from "./components/Gallery";
+import { Analytics } from "@vercel/analytics/react";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
       <Footer />
+      <Analytics />
     </Router>
   );
 }
