@@ -13,6 +13,19 @@ const getClubColorClasses = (club) => {
   return 'bg-purple-500';
 };
 
+const getClubShadowClasses = (club) => {
+  if (!club) return 'shadow-purple-500/20';
+  const key = club.toLowerCase();
+  // ACM and ACM-W -> sky blue shadow
+  if (key.includes('acmw') || key.includes('acm-w')) return 'shadow-sky-500/20';
+  if (key.includes('acm')) return 'shadow-sky-500/20';
+  // GDGC -> green shadow
+  if (key.includes('gdgc') || key.includes('gdg')) return 'shadow-green-500/20';
+  // All Clubs -> amber shadow
+  if (key.includes('all')) return 'shadow-amber-500/20';
+  return 'shadow-purple-500/20';
+};
+
 function MobileEventCard({ event, index, getEventTypeColor, isLast }) {
   return (
     <div className="relative w-3/4 mx-auto">
@@ -22,7 +35,7 @@ function MobileEventCard({ event, index, getEventTypeColor, isLast }) {
         <div className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
         
         {/* Main Card */}
-        <div className="relative bg-black/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 shadow-xl shadow-amber-500/20">
+        <div className={`relative bg-black/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 shadow-xl ${getClubShadowClasses(event.club)}`}>
           {/* Card Header */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">

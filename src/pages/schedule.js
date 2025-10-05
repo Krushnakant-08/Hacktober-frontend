@@ -76,7 +76,7 @@ function Schedule() {
 
         {/* Footer CTA */}
         <div className="text-center mt-20">
-          <div className="bg-black/60 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 shadow-xl">
+          <div className="bg-[rgba(20,20,30,0.95)] backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 shadow-xl shadow-purple-500/20">
             <h3 className="text-3xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text mb-4">
               Ready to Join?
             </h3>
