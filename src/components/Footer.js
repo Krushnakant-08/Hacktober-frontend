@@ -52,7 +52,7 @@ const Footer = () => {
                 <FaEnvelope aria-hidden="true" />
               </a>
               <a
-                href="https://github.com/pccoe-acm"
+                href="https://github.com/pccoe-acm-hacktoberfest-2023"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
@@ -61,7 +61,7 @@ const Footer = () => {
                 <FaGithub aria-hidden="true" />
               </a>
               <a
-                href="https://www.linkedin.com/company/pccoe-acm"
+                href="https://www.linkedin.com/company/pccoe-acm-student-chapter/posts/?feedView=all"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
@@ -98,12 +98,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <Link
-                  to="/projects"
+                <a
+                  href="/#about"
                   className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
                 >
-                  Projects
-                </Link>
+                  About
+                </a>
               </li>
               <li>
                 <Link
@@ -157,9 +157,14 @@ const Footer = () => {
               alt="CESA Logo"
               className="h-8 w-auto opacity-80"
             />
-            <a href='https://pccoe.acm.org/'>
+             <img
+              src="/assets/ACM.png"
+              alt="ACM Logo"
+              className="h-8 w-auto opacity-80"
+            />
+            <a href='https://pccoe.acm.org/' target='_blank' rel='noopener noreferrer'>
             <span className="text-purple-200/60 font-mono text-sm">
-              Powered by CESA
+              Powered by CESA ACM Student Chapter
             </span>
             </a>
           </div>
