@@ -146,15 +146,15 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-8">
             <div className="p-3 sm:p-4">
               <button
-                aria-label="Explore projects"
+                aria-label="Register Now"
                 className="cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-500 text-purple-300 text-base sm:text-lg md:text-xl font-mono tracking-wide hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.45)] transform hover:scale-[1.03] transition-all duration-300"
                 style={{
                   boxShadow:
                     "0 0 10px rgba(180,0,255,0.35), 0 0 0 2px rgba(180,0,255,0.4)",
                 }}
-                onClick={() => Navigate('/projects')}
+                onClick={() => Navigate('/events')}
               >
-                Explore Projects
+                Register Now
               </button>
             </div>
             <div className="p-3 sm:p-4">
