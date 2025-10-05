@@ -27,6 +27,15 @@ const events = [
     club: "GDGC"
   },
   {
+    id: 5,
+    time: "3:00 PM - 5:00 PM",
+    date: "8th October 2025",
+    title: "Profile Building on LinkedIn",
+    description: "Build an outstanding LinkedIn profile for developers.",
+    type: "session",
+    club: "ACM"
+  },
+  {
     id: 4,
     time: "9:00 PM - 10:00 PM",
     date: "8th October 2025",
@@ -35,15 +44,7 @@ const events = [
     type: "session",
     club: "ACM"
   },
-  {
-    id: 5,
-    time: "9:00 PM - 10:00 PM",
-    date: "8th October 2025",
-    title: "Profile Building on LinkedIn",
-    description: "Build an outstanding LinkedIn profile for developers.",
-    type: "session",
-    club: "ACM"
-  },
+
   {
     id: 6,
     time: "9:00 AM - 11:00 AM",
@@ -89,15 +90,15 @@ const events = [
     type: "ceremony",
     club: "All Clubs"
   },
-  {
-    id: 11,
-    time: "4:00 PM - 6:00 PM",
-    date: "14th or 15th October 2025",
-    title: "Sponsor Session",
-    description: "Meet our sponsors and learn about opportunities.",
-    type: "session",
-    club: "All Clubs"
-  }
+  // {
+  //   id: 11,
+  //   time: "4:00 PM - 6:00 PM",
+  //   date: "14th or 15th October 2025",
+  //   title: "Sponsor Session",
+  //   description: "Meet our sponsors and learn about opportunities.",
+  //   type: "session",
+  //   club: "All Clubs"
+  // }
 ];
 
 const getEventTypeColor = (type) => {

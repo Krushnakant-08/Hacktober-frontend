@@ -148,9 +148,11 @@ const Footer = () => {
               alt="CESA Logo"
               className="h-8 w-auto opacity-80"
             />
+            <a href='https://pccoe.acm.org/'>
             <span className="text-purple-200/60 font-mono text-sm">
               Powered by CESA
             </span>
+            </a>
           </div>
 
           <div className="text-center md:text-right">
