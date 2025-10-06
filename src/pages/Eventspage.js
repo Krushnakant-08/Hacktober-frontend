@@ -1,15 +1,18 @@
+import { img } from "framer-motion/client";
 import React from "react";
 
 const EventsPage = () => {
   const events = [
     {
       title: "Escape Room",
+      img: "/assets/Haunted.png",
       description: "Solve puzzles, crack codes, and escape the room in time!",
       formLink: "https://docs.google.com/forms/d/e/1FAIpQLSc2jdVcymubGxIeWzMR9ezFE4WkXgJlBD-FcTaelDpvfPzigA/viewform?usp=sharing&ouid=105292136520880030529",
       gradient: "from-purple-500 to-pink-500",
     },
     {
       title: "Hacktopia",
+      img: "/assets/PURVA.png",
       description: "Show your coding skills and win exciting prizes!",
       formLink: "https://forms.gle/your-hacktopia-link",
       gradient: "from-indigo-500 to-purple-500",
@@ -17,7 +20,7 @@ const EventsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0D0C1D] py-32 px-4 flex flex-col items-center">
+    <div className="min-h-screen bg-[#0D0C1D] py-28 px-4 flex flex-col items-center">
       <h1 className="text-5xl md:text-7xl font-mono font-bold text-purple-400 mb-12 text-center neon-text" 
           style={{ textShadow: "0 0 8px rgba(180,0,255,0.6), 0 0 15px rgba(180,0,255,0.4)" }}>
         Upcoming Events
@@ -27,18 +30,32 @@ const EventsPage = () => {
         {events.map((event, idx) => (
           <div
             key={idx}
-            className={`bg-[rgba(20,20,30,0.95)] rounded-2xl shadow-lg shadow-purple-500/20 border-[1.5px] border-purple-500/30 p-8 flex flex-col items-center max-w-sm text-center transform hover:scale-105 transition-all duration-300`}
+            className={`bg-[rgba(20,20,30,0.95)] rounded-2xl shadow-lg shadow-purple-500/20 border-[1.5px] border-purple-500/30 overflow-hidden w-80 text-center transform hover:scale-105 transition-all duration-300 h-[600px] flex flex-col`}
           >
-            <h2 className="text-3xl font-bold text-purple-200 mb-4">{event.title}</h2>
-            <p className="text-gray-300 mb-6">{event.description}</p>
-            <a
-              href={event.formLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`px-6 py-3 rounded-lg bg-gradient-to-r ${event.gradient} text-white font-semibold shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 transition-all duration-300`}
-            >
-              Register Now
-            </a>
+            {/* Image Section - Upper Half */}
+            <div className="h-4/5 w-full relative rounded-t-2xl">
+              <img 
+                src={event.img} 
+                alt={event.title} 
+                className="w-full h-full object-cover rounded-t-2xl" 
+              />
+            </div>
+            
+            {/* Content Section - Lower Half */}
+            <div className="h-1/2 p-6 flex flex-col justify-between min-w-0">
+              <div>
+                <h2 className="text-2xl font-bold text-purple-200 mb-4 whitespace-nowrap">{event.title}</h2>
+                <p className="text-gray-300 mb-4 text-sm">{event.description}</p>
+              </div>
+              <a
+                href={event.formLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`px-6 py-3 rounded-lg bg-gradient-to-r ${event.gradient} text-white font-semibold shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 transition-all duration-300 mt-auto`}
+              >
+                Register Now
+              </a>
+            </div>
           </div>
         ))}
       </div>
