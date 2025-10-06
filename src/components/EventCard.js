@@ -3,8 +3,11 @@ import React from 'react';
 const getClubColorClasses = (club) => {
   if (!club) return 'bg-purple-500';
   const key = club.toLowerCase();
-  // ACM and ACM-W -> sky blue
-  if (key.includes('acmw') || key.includes('acm-w')) return 'bg-sky-500';
+  // ACM and ACMW -> sky blue to pink gradient
+  if (key.includes('acm') && key.includes('acmw')) return 'bg-gradient-to-r from-sky-500 to-pink-500';
+  // ACM-W -> pink
+  if (key.includes('acmw') || key.includes('acm-w')) return 'bg-pink-500';
+  // ACM -> sky blue
   if (key.includes('acm')) return 'bg-sky-500';
   // GDGC -> green
   if (key.includes('gdgc') || key.includes('gdg')) return 'bg-green-500';
@@ -16,14 +19,33 @@ const getClubColorClasses = (club) => {
 const getClubShadowClasses = (club) => {
   if (!club) return 'shadow-purple-500/20';
   const key = club.toLowerCase();
-  // ACM and ACM-W -> sky blue shadow
-  if (key.includes('acmw') || key.includes('acm-w')) return 'shadow-sky-500/20';
+  // All Clubs -> amber shadow (check first to avoid conflicts)
+  if (key.includes('all')) return 'shadow-amber-500/20';
+  // ACM and ACMW -> combined gradient shadow
+  if (key.includes('acm') && key.includes('acmw')) return 'shadow-pink-500/15 shadow-sky-500/15';
+  // ACM-W -> pink shadow
+  if (key.includes('acmw') || key.includes('acm-w')) return 'shadow-pink-500/20';
+  // ACM -> sky blue shadow
   if (key.includes('acm')) return 'shadow-sky-500/20';
   // GDGC -> green shadow
   if (key.includes('gdgc') || key.includes('gdg')) return 'shadow-green-500/20';
-  // All Clubs -> amber shadow
-  if (key.includes('all')) return 'shadow-amber-500/20';
   return 'shadow-purple-500/20';
+};
+
+const getClubGlowClasses = (club) => {
+  if (!club) return 'from-purple-500 to-blue-500';
+  const key = club.toLowerCase();
+  // All Clubs -> amber glow
+  if (key.includes('all')) return 'from-amber-500 to-orange-500';
+  // ACM and ACMW -> sky blue to pink gradient
+  if (key.includes('acm') && key.includes('acmw')) return 'from-sky-500 to-pink-500';
+  // ACM-W -> pink glow
+  if (key.includes('acmw') || key.includes('acm-w')) return 'from-pink-500 to-purple-500';
+  // ACM -> sky blue glow
+  if (key.includes('acm')) return 'from-sky-500 to-blue-500';
+  // GDGC -> green glow
+  if (key.includes('gdgc') || key.includes('gdg')) return 'from-green-500 to-teal-500';
+  return 'from-purple-500 to-blue-500';
 };
 
 function EventCard({ event, index, getEventTypeColor }) {
@@ -40,7 +62,7 @@ function EventCard({ event, index, getEventTypeColor }) {
       <div className={`w-full max-w-xl ${index % 2 === 0 ? 'pr-16' : 'pl-16'}`}>
         <div className={`relative group cursor-pointer transform transition-all duration-300 hover:scale-105 ${index % 2 === 0 ? 'hover:translate-x-2' : 'hover:-translate-x-2'}`}>
           {/* Card Glow Effect */}
-          <div className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} rounded-xl blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
+          <div className={`absolute inset-0 bg-gradient-to-r ${getClubGlowClasses(event.club)} rounded-xl blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
           
           {/* Main Card */}
           <div className={`relative bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 shadow-2xl ${getClubShadowClasses(event.club)}`}>
