@@ -5,14 +5,14 @@ const EventsPage = () => {
   const events = [
     {
       title: "Escape Room",
-      img: "/assets/Haunted.png",
+      img: "/assets/Escape_Room.png",
       description: "Solve puzzles, crack codes, and escape the room in time!",
       formLink: "https://docs.google.com/forms/d/e/1FAIpQLSc2jdVcymubGxIeWzMR9ezFE4WkXgJlBD-FcTaelDpvfPzigA/viewform?usp=sharing&ouid=105292136520880030529",
       gradient: "from-purple-500 to-pink-500",
     },
     {
       title: "Hacktopia",
-      img: "/assets/PURVA.png",
+      img: "/assets/Hacktopia.jpg",
       description: "Show your coding skills and win exciting prizes!",
       formLink: "",
       gradient: "from-indigo-500 to-purple-500",
