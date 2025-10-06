@@ -12,6 +12,36 @@ const Footer = () => {
     }, 100);
   };
 
+  const handleScheduleClick = () => {
+    navigate('/');
+    setTimeout(() => {
+      const scheduleElement = document.getElementById('schedule');
+      if (scheduleElement) {
+        scheduleElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  const handleAboutClick = () => {
+    navigate('/');
+    setTimeout(() => {
+      const aboutElement = document.getElementById('about');
+      if (aboutElement) {
+        aboutElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  const handleContactClick = () => {
+    navigate('/');
+    setTimeout(() => {
+      const contactElement = document.getElementById('contact');
+      if (contactElement) {
+        contactElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <footer className="relative bg-[#0D0C1D] border-t border-purple-500/20 pt-16 pb-8 overflow-hidden">
       
@@ -90,20 +120,20 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <a
-                  href="/#schedule"
-                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
+                <button
+                  onClick={handleScheduleClick}
+                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm cursor-pointer"
                 >
                   Schedule
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="/#about"
-                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
+                <button
+                  onClick={handleAboutClick}
+                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm cursor-pointer"
                 >
                   About
-                </a>
+                </button>
               </li>
               <li>
                 <Link
@@ -114,12 +144,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="/#contact"
-                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm"
+                <button
+                  onClick={handleContactClick}
+                  className="text-purple-200 hover:text-purple-400 transition-colors duration-300 font-mono text-sm cursor-pointer"
                 >
                   Contact
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -152,11 +182,6 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-4 mb-4 md:mb-0">
-            <img
-              src="/assets/CESA_WHITE.png"
-              alt="CESA Logo"
-              className="h-8 w-auto opacity-80"
-            />
              <img
               src="/assets/ACM.png"
               alt="ACM Logo"
