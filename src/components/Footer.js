@@ -75,7 +75,7 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex space-x-4">
               <a
-                href="mailto:contact.acm@pccoepune.org"
+                href="mailto:acm@pccoepune.org"
                 className="w-10 h-10 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center text-purple-400 hover:bg-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_10px_rgba(180,0,255,0.5)]"
                 aria-label="Email us"
               >
