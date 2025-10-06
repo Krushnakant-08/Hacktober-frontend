@@ -20,7 +20,7 @@ const events = [
   {
     id: 3,
     time: "4:00 PM - 7:00 PM",
-    date: "6th - 10th October 2025",
+    date: "8th - 10th October 2025",
     title: "Cloud Workshop",
     description: "Practical cloud computing workshop.",
     type: "workshop",
