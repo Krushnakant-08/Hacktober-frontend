@@ -30,7 +30,7 @@ const EventsPage = () => {
         {events.map((event, idx) => (
           <div
             key={idx}
-            className={`bg-[rgba(20,20,30,0.95)] rounded-2xl shadow-lg shadow-purple-500/20 border-[1.5px] border-purple-500/30 overflow-hidden w-80 text-center transform hover:scale-105 transition-all duration-300 h-[600px] flex flex-col`}
+            className={`bg-[rgba(20,20,30,0.95)] rounded-2xl shadow-lg shadow-purple-500/20 border-[1.5px] border-purple-500/30 overflow-hidden w-full max-w-sm md:w-80 text-center transform hover:scale-105 transition-all duration-300 h-[500px] md:h-[600px] flex flex-col`}
           >
             {/* Image Section - Upper Half */}
             <div className="h-4/5 w-full relative rounded-t-2xl">
@@ -44,14 +44,14 @@ const EventsPage = () => {
             {/* Content Section - Lower Half */}
             <div className="h-1/2 p-6 flex flex-col justify-between min-w-0">
               <div>
-                <h2 className="text-2xl font-bold text-purple-200 mb-4 whitespace-nowrap">{event.title}</h2>
-                <p className="text-gray-300 mb-4 text-sm">{event.description}</p>
+                <h2 className="text-2xl font-bold text-purple-200 mb-3 whitespace-nowrap">{event.title}</h2>
+                <p className="text-gray-300 mb-3 text-sm">{event.description}</p>
               </div>
               <a
                 href={event.formLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`px-6 py-3 rounded-lg bg-gradient-to-r ${event.gradient} text-white font-semibold shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 transition-all duration-300 mt-auto`}
+                className={`px-6 py-3 rounded-lg bg-gradient-to-r ${event.gradient} text-white font-semibold shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 transition-all duration-300`}
               >
                 Register Now
               </a>
