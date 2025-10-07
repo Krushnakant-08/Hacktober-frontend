@@ -14,7 +14,7 @@ const EventsPage = () => {
       title: "Hacktopia",
       img: "/assets/Hacktopia.jpg",
       description: "Show your coding skills and win exciting prizes!",
-      formLink: "",
+      formLink: "https://unstop.com/p/hacktopia-2025-pimpri-chinchwad-college-of-engineering-pccoe-pune-1570083?utm_campaign=site-emails&utm_medium=d2c-automated&utm_source=congratulations-your-listing-for-hacktopia-2025-is-complete",
       gradient: "from-indigo-500 to-purple-500",
     },
   ];
