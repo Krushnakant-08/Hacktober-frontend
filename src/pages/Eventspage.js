@@ -1,5 +1,6 @@
 import { img } from "framer-motion/client";
 import React from "react";
+import OptimizedImage from "../components/OptimizedImage";
 
 const EventsPage = () => {
   const events = [
@@ -34,10 +35,11 @@ const EventsPage = () => {
           >
             {/* Image Section - Upper Half */}
             <div className="h-4/5 w-full relative rounded-t-2xl">
-              <img 
+              <OptimizedImage 
                 src={event.img} 
                 alt={event.title} 
-                className="w-full h-full object-cover rounded-t-2xl" 
+                className="w-full h-full rounded-t-2xl"
+                lazy={idx > 0} // Only lazy load images after the first one
               />
             </div>
             
