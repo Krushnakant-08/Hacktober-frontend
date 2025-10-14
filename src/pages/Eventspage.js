@@ -49,20 +49,9 @@ const EventsPage = () => {
                 <h2 className="text-2xl font-bold text-purple-200 mb-3 whitespace-nowrap">{event.title}</h2>
                 <p className="text-gray-300 mb-3 text-sm">{event.description}</p>
               </div>
-              {event.formLink ? (
-                <a
-                  href={event.formLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`px-6 py-3 rounded-lg bg-gradient-to-r ${event.gradient} text-white font-semibold shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 transition-all duration-300`}
-                >
-                  Register Now
-                </a>
-              ) : (
-                <div className="px-5 py-3 rounded-lg text-sm bg-purple-500/40 border border-purple-400/50 text-purple-200 font-semibold cursor-not-allowed">
-                  Registration Starting Soon!
-                </div>
-              )}
+              <div className="px-5 py-3 rounded-lg text-sm bg-gray-500/40 border border-gray-400/50 text-gray-300 font-semibold cursor-not-allowed">
+                Registration Closed
+              </div>
             </div>
           </div>
         ))}
