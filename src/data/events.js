@@ -45,15 +45,7 @@ const events = [
     club: "ACM"
   },
 
-  {
-    id: 6,
-    time: "9:00 AM - 11:00 AM",
-    date: "11th October 2025",
-    title: "Session",
-    description: "General session for contributors.",
-    type: "session",
-    club: "ACM-W"
-  },
+
   {
     id: 7,
     time: "11:00 AM - 12:00 PM",
