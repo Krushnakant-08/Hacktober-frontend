@@ -27,10 +27,10 @@ const Leaderboard = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-purple-300 mb-6 sm:mb-8">Hacktopia</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start lg:items-center">
             {/* Left side - Poster */}
-            <div className="bg-[#1a0d3b] rounded-2xl p-4 sm:p-6 shadow-lg shadow-purple-500/20">
-              <img
-                src="/assets/Hktp.png"
-                alt="Hacktopia Event"
+            <div className="bg-[#1a0d3b] rounded-2xl p-4 sm:p-6 shadow-lg shadow-purple-500/20 max-w-md mx-auto">
+              <img 
+                src="/assets/Hktp.png" 
+                alt="Hacktopia Event" 
                 className="w-full rounded-xl shadow-md hover:scale-[1.02] transition-transform duration-300"
               />
             </div>
@@ -69,10 +69,10 @@ const Leaderboard = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-purple-300 mb-6 sm:mb-8">Escape Room</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start lg:items-center">
             {/* Left side - Poster */}
-            <div className="bg-[#1a0d3b] rounded-2xl p-4 sm:p-6 shadow-lg shadow-purple-500/20">
-              <img
-                src="/assets/EscRm.png"
-                alt="Escape Room Event"
+            <div className="bg-[#1a0d3b] rounded-2xl p-4 sm:p-6 shadow-lg shadow-purple-500/20 max-w-md mx-auto">
+              <img 
+                src="/assets/EscRm.png" 
+                alt="Escape Room Event" 
                 className="w-full rounded-xl shadow-md hover:scale-[1.02] transition-transform duration-300"
               />
             </div>
