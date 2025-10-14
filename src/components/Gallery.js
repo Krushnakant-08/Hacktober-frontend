@@ -166,7 +166,7 @@ const Gallery = () => {
             eventImageSets.map((event) => {
               const images = event.files.map((filename, index) => ({
                 id: `${event.eventId}-${index + 1}`,
-                src: `/assets/gallery/${filename}`,
+                src: `/assets/gallery/2k24/${filename}`,
                 alt: `${event.altPrefix} ${index + 1}`,
                 title: event.title,
                 description: event.description
