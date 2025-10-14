@@ -56,7 +56,7 @@ const OptimizedImage = ({
         <img
           src={placeholder}
           alt="Loading..."
-          className="w-full h-full object-cover filter blur-sm"
+          className="w-full h-full object-contain filter blur-sm"
           style={{
             transition: 'opacity 0.3s ease-in-out',
             opacity: isLoaded ? 0 : 1
