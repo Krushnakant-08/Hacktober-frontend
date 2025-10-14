@@ -7,7 +7,7 @@ const Leaderboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0D0C1D] text-white pt-32 px-4 relative z-10">
+    <div className="min-h-screen bg-[#0D0C1D] text-white pt-8 px-4 relative z-10">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0D0C1D] via-[#22103a] to-[#0D0C1D]"></div>
 
