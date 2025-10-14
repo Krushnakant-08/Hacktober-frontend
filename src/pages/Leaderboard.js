@@ -29,7 +29,7 @@ const Leaderboard = () => {
             {/* Left side - Poster */}
             <div className="bg-[#1a0d3b] rounded-2xl p-4 sm:p-6 shadow-lg shadow-purple-500/20 max-w-md mx-auto">
               <img 
-                src="/assets/Hktp.png" 
+                src="/assets/Hktp.jpg" 
                 alt="Hacktopia Event" 
                 className="w-full rounded-xl shadow-md hover:scale-[1.02] transition-transform duration-300"
               />
@@ -71,7 +71,7 @@ const Leaderboard = () => {
             {/* Left side - Poster */}
             <div className="bg-[#1a0d3b] rounded-2xl p-4 sm:p-6 shadow-lg shadow-purple-500/20 max-w-md mx-auto">
               <img 
-                src="/assets/EscRm.png" 
+                src="/assets/EscRm.jpg" 
                 alt="Escape Room Event" 
                 className="w-full rounded-xl shadow-md hover:scale-[1.02] transition-transform duration-300"
               />
