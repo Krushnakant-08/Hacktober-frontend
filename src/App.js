@@ -2,7 +2,6 @@ import "./App.css";
 import HeroSection from "./pages/herosection";
 import Navbar from "./components/navbar";
 import Schedule from "./pages/schedule";
-import ProjectsPage from "./pages/ProjectsPage";
 import EventsPage from "./pages/Eventspage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ContactPage from "./pages/contacts";
@@ -79,7 +78,6 @@ function App() {
             </div>
           </div>
         } />
-        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<About />} /> 
