@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import { FaGithub, FaUsers, FaCodeBranch, FaCheckCircle } from "react-icons/fa";
 
 const goals = [
@@ -28,14 +28,7 @@ export default function About() {
         </section>
 
         {/* Stats */}
-        <section className="mb-16 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="bg-black/60 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 flex items-center gap-4 justify-center">
-            <FaGithub className="text-3xl text-purple-300" aria-hidden="true" />
-            <div>
-              <div className="text-2xl font-bold text-purple-200">100+ PRs</div>
-              <div className="text-purple-300/80 text-sm">Across community repos</div>
-            </div>
-          </div>
+        <section className="mb-16 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           <div className="bg-black/60 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 flex items-center gap-4 justify-center">
             <FaUsers className="text-3xl text-pink-300" aria-hidden="true" />
             <div>
