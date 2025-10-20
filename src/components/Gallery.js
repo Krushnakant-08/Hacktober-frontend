@@ -7,6 +7,66 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   
   // Define multiple images per event here (filenames inside /public/assets/gallery)
+  const events2025 = [
+    {
+      eventId: 'inauguration',
+      title: 'Inauguration',
+      description: 'The grand opening ceremony of Hacktoberfest 2025.',
+      files: [
+        'inag-1.JPG',
+        'inag-2.JPG',
+        'inag-3.JPG'
+      ]
+    },
+    {
+      eventId: 'website-launch',
+      title: 'Website Launch',
+      description: 'The official launch of our community website.',
+      files: [
+        'web-1.JPG',
+        'web-2.JPG',
+        'web-3.JPG'
+      ]
+    },
+    {
+      eventId: 'github',
+      title: 'GitHub Workshop',
+      description: 'Learning version control and open source contribution.',
+      files: [
+        'github-1.jpg'
+      ]
+    },
+    {
+      eventId: 'escape-room',
+      title: 'Escape Room',
+      description: 'An exciting puzzle-solving adventure.',
+      files: [
+        'escap-1.png',
+        'escap-2.png',
+        'escap-3.png'
+      ]
+    },
+    {
+      eventId: 'profile-building',
+      title: 'Profile Building',
+      description: 'Learn to build an impressive professional profile.',
+      files: [
+        'profile-1.jpg',
+        'profile-2.jpg',
+        'profile-3.jpg'
+      ]
+    },
+    {
+      eventId: 'hacktopia',
+      title: 'Hacktopia',
+      description: 'The grand hackathon event.',
+      files: [
+        'hktp-1.png',
+        'hktp-2.jpg'
+      ]
+    }
+  ];
+
   const eventImageSets = [
     {
       eventId: 'gamedev',
@@ -155,11 +215,66 @@ const Gallery = () => {
             Gallery
           </h1>
           <p className="text-xl text-purple-200 font-mono mb-4">
-            Relive the memories from Hacktoberfest 2024
+            Relive the memories from Hacktoberfest 2024 & 2025
           </p>
           <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full shadow-lg shadow-purple-500/50"></div>
         </div>
 
+        {/* 2025 Events Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-purple-300 mb-8 text-center">Hacktoberfest 2025</h2>
+          <div className="grid grid-cols-1 gap-8">
+            {events2025.map((event) => {
+              const images = event.files.map((filename) => ({
+                id: `${event.eventId}-${filename}`,
+                src: `/assets/gallery/2k25/${filename}`,
+                alt: `${event.title} photo`,
+                title: event.title,
+                description: event.description
+              }));
+
+              return (
+                <section
+                  key={event.eventId}
+                  className="relative overflow-hidden rounded-2xl bg-black/40 backdrop-blur-sm border border-purple-500/20 hover:border-purple-400/40 transition-colors"
+                  aria-label={`${event.title} gallery`}
+                >
+                  <header className="px-5 pt-5">
+                    <h3 className="text-2xl font-bold text-purple-300 mb-1">{event.title}</h3>
+                    <p className="text-purple-200/90 text-sm mb-4">{event.description}</p>
+                  </header>
+                  <div className="relative">
+                    <Slider {...sliderSettings}>
+                      {images.map((image) => (
+                        <div key={image.id} className="px-5 pb-6">
+                          <button
+                            type="button"
+                            className="block group relative w-full overflow-hidden rounded-xl border border-purple-500/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            onClick={() => openModal(image)}
+                            aria-label={`Open ${image.title} image in fullscreen`}
+                          >
+                            <div className="h-[400px] sm:h-[450px] md:h-[500px]">
+                              <img
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
+                              />
+                            </div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          </button>
+                        </div>
+                      ))}
+                    </Slider>
+                  </div>
+                </section>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 2024 Events Section */}
+        <h2 className="text-3xl font-bold text-purple-300 mb-8 text-center">Hacktoberfest 2024</h2>
+        
         {/* Per-Event Cards with Carousels */}
         <div className="grid grid-cols-1 gap-8 mb-12">
           {eventImageSets && eventImageSets.length > 0 ? (
