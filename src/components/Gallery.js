@@ -33,7 +33,9 @@ const Gallery = () => {
       title: 'GitHub Workshop',
       description: 'Learning version control and open source contribution.',
       files: [
-        'github-1.jpg'
+        'github-1.jpg',
+        'github-2.jpg',
+        'github-3.jpg'
       ]
     },
     {
